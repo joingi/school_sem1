@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>POST WITH AJAX</title>
+</head>
+<body>
+
+
+		<form id="frmUser">
+
+			<input type="file" name="file1">
+			<input type="file" name="file2">
+			<input type="file" name="file3">
+
+			<button type="button" id="btnSave">SAVE</button>
+		</form>
+
+		<script>
+			btnSave.addEventListener( "click" , function(){
+			  var ajax = new XMLHttpRequest();
+			  ajax.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+			     	var sDataFromServer = this.responseText;
+			     	console.log("THE SERVER SEND ME THIS:" , sDataFromServer);
+	     		}
+		    }
+			  ajax.open( "POST", "api-save-data.php", true );
+			  var jFrmUser = new FormData( frmUser );
+			  ajax.send( jFrmUser );
+			});
+
+    </script>
+
+
+
+</body>
+</html>

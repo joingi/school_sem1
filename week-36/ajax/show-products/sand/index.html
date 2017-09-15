@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PRODUCTS AND AJAX</title>
+</head>
+<body>
+
+		<h1>
+			PRODUCTS AND AJAX
+		</h1>
+
+		<div id="boxProducts"></div>
+
+		<script>
+
+
+			// Self invoking function / calls itself
+			(function(){
+			  var ajax = new XMLHttpRequest();
+			  ajax.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+			     	var sDataFromServer = this.responseText;
+			     	// console.log(sDataFromServer);
+			     	var aDataFromServer = JSON.parse( sDataFromServer );
+			     	// console.log( aDataFromServer );
+			     	var sDivsProducts = "";
+			     	for( var i = 0; i < aDataFromServer.length; i++){
+		     			sDivsProducts += '<div class="btnGetPrice" data-id="'+aDataFromServer[i].id+'">'+aDataFromServer[i].letter+'</div><input class="btnDelete" type="button" data-id="'+aDataFromServer[i].id+'">';
+			     	}
+			     	// console.log(sDivsProducts);
+			     	boxProducts.innerHTML = sDivsProducts;
+	     		}
+		    }
+			  ajax.open( "GET", "api-get-products.php", true );
+			  ajax.send();
+			})();
+
+
+
+
+			document.addEventListener( "click" , function( e ){
+				if( e.target.className == "btnGetPrice" ){
+					// console.log("BUTTON CLICKED");
+					var sProductId = e.target.getAttribute("data-id");
+					// console.log(sProductId);
+					getPrice( sProductId );
+				}
+			});
+
+			// DELETE
+			document.addEventListener( "click" , function( e ){
+				if( e.target.className == "btnDelete" ){
+					// console.log("BUTTON CLICKED");
+					var sProductId = e.target.getAttribute("data-id");
+					console.log(sProductId);
+
+				}
+			});
+
+
+			function getPrice( sProductId ){
+				console.log("sProductId",sProductId);
+			  var ajax = new XMLHttpRequest();
+			  ajax.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+			     	var sDataFromServer = this.responseText;
+			     	var jData = JSON.parse( sDataFromServer ); // {"price":100}
+			     	console.log("PRICE IS:"+jData.price);
+	     		}
+		    }
+			  ajax.open( "GET", "api-get-product.php?id="+sProductId, true );
+			  ajax.send();
+			}
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>

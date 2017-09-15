@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="showUser">
+
+    </div>
+
+    <input id="inputName" type="text" placeholder="Name">
+    <input id="inputLastName" type="text" placeholder="Last name">
+    <input id="inputColor" type="color" placeholder="Color">
+
+    <button id="btnSaveInput">SAVE</button>
+    <button id="btnShowUsers">Show Users</button>
+
+
+    <script>
+        aUser = []
+
+        var inputName = document.querySelector('#inputName');
+        var inputLastName = document.querySelector('#inputLastName');
+        var inputColor = document.querySelector('#inputColor')
+        var showUsers = document.querySelector('#showUser')
+        var btnSaveInput = document.querySelector('#btnSaveInput');
+        var btnShowUsers = document.querySelector('#btnShowUsers');
+
+        btnSaveInput.addEventListener('click', function () {
+            // console.log('click');
+            var sUserName = inputName.value;
+            var sUserLastName = inputLastName.value;
+            var sUserColor = inputColor.value;
+            // console.log(getName);
+            // console.log(getLastName);
+
+            var jUser = {}
+            jUser.name = sUserName;
+            jUser.lastName = sUserLastName;
+            aUser.push(jUser);
+            console.log(aUser);
+        });
+
+        btnShowUsers.addEventListener('click', function () {
+            var sDivUser = '';
+            for (var i = 0; i < aUser.length; i++) {
+                // console.log(aUser[i]);
+                var sUserName = aUser[i].name;
+                var sUserLastName = aUser[i].sUserLastName;
+
+                var sShowUser = '<div>' + aUser[i].name + ' ' +  aUser[i].lastName + '</div>';
+                showUsers.insertAdjacentHTML('beforeend', sShowUser);
+                // sDivUser += '<div>' + sUserName + ' ' + sUserLastName + ' </div>'
+                // showUsers.insertAdjacentHTML('beforeend', sDivUser);
+            }
+        })
+
+
+    </script>
+</body>
+</html>

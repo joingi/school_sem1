@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .container {
+            width: 1600px;
+            height: 900px;
+            -webkit-filter: contrast(100);
+            background-color: white;
+        }
+
+        .person {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            /border: 1px solid black;
+            / border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 1px;
+            color: white;
+            /box-shadow: 0px 0px 10px gray;
+            / -webkit-filter: blur(5px);
+        }
+
+        .sick {
+            background-color: purple;
+        }
+
+        .healthy {
+            background-color: green;
+        }
+
+        .immune {
+            background-color: blue;
+        }
+    </style>
+    <title>Contamination</title>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <div id="container" class="container"></div>
+    <script>
+        function getRandomNumber(minNumber, maxNumber) {
+            randomNumber = Math.round(Math.random() * maxNumber) + minNumber;
+            //console.log(randomNumber);
+            return randomNumber;
+        };
+        /**************************************************/
+        // Get the distance between 2 elements
+        function getDistanceBetweenElements(elementOne, elementTwo) {
+            var positionElementOneX = $(elementOne).offset().top;
+            var positionElementOneY = $(elementOne).offset().left;
+            var positionElementTwoX = $(elementTwo).offset().top;
+            var positionElementTwoY = $(elementTwo).offset().left;
+            var distanceX = Math.abs(positionElementOneX - positionElementTwoX);
+            var distanceY = Math.abs(positionElementOneY - positionElementTwoY);
+            var finalDistance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+            return finalDistance;
+        };
+        /
+        var iContaminated = 0;
+
+        function checkContamination() {
+            $(".person").each(function () {
+                // Only check if the selected element is sick
+                if ($(this).hasClass("sick") && iContaminated <= 50) {
+                    var elementOne = $(this);
+                    $(".person").each(function () {
+                        var elementTwo = $(this);
+                        //console.log(elementTwo);
+                        // Check if the distance between those 2 elements is less than 50px. If so, make them sick
+                        var finalDistance = getDistanceBetweenElements(elementOne, elementTwo);
+                        if (finalDistance < 20 && $(this).hasClass("healthy")) {
+                            iContaminated++;
+                            console.log("finalDistance " + finalDistance);
+                            console.log("CONTAMINATED " + iContaminated);
+                            //$(elementOne).removeClass("healthy").addClass("sick");
+                            $(elementTwo).removeClass("healthy").addClass("sick");
+                        }
+                    });
+                }
+                if ($(this).hasClass("healthy") && iContaminated >= 51) {
+                    var elementOne = $(this);
+                    $(".person").each(function () {
+                        var elementTwo = $(this);
+                        //console.log(elementTwo);
+                        // Check if the distance between those 2 elements is less than 50px. If so, make them sick
+                        var finalDistance = getDistanceBetweenElements(elementOne, elementTwo);
+                        if (finalDistance < 20 && $(this).hasClass("healthy")) {
+                            iContaminated++;
+                            console.log("finalDistance " + finalDistance);
+                            console.log("CONTAMINATED " + iContaminated);
+                            //$(elementOne).removeClass("healthy").addClass("sick");
+                            $(elementTwo).removeClass("healthy").addClass("sick");
+                        }
+                    });
+                }
+            });
+        };
+        */
+        var iContaminated = 0;
+
+        function checkContamination() {
+            $(".sick").slice(0, 20).each(function () {
+                var elementOne = $(this);
+                $(".healthy").slice(0, 50).each(function () {
+                    var elementTwo = $(this);
+                    //console.log(elementTwo);
+                    // Check if the distance between those 2 elements is less than 50px. If so, make them sick
+                    var finalDistance = getDistanceBetweenElements(elementOne, elementTwo);
+                    if (finalDistance < 20) {
+                        iContaminated;
+                        console.log("finalDistance " + finalDistance);
+                        console.log("CONTAMINATED " + iContaminated);
+                        //$(elementOne).removeClass("healthy").addClass("sick");
+                        $(elementTwo).removeClass("healthy").addClass("sick");
+                        // Three sounds playing on top of eachother
+                        var audioElementOne = document.createElement('audio');
+                        audioElementOne.setAttribute('src', 'gun.mp3');
+                        audioElementOne.setAttribute('autoplay', 'autoplay');
+                        var audioElementTwo = document.createElement('audio');
+                        audioElementTwo.setAttribute('src', 'torpedo.mp3');
+                        audioElementTwo.setAttribute('autoplay', 'autoplay');
+                        var audioElementThree = document.createElement('audio');
+                        audioElementThree.setAttribute('src', 'punches.mp3');
+                        audioElementThree.setAttribute('autoplay', 'autoplay');
+                        // console.log($("#soundGun"));
+                    }
+                });
+            });
+        };
+        setInterval("checkContamination()", 5000);
+        /**************************************************/
+        function createPeople() {
+            for (var i = 0; i < 300; i) {
+                var topPosition = getRandomNumber(0, 800);
+                var leftPosition = getRandomNumber(0, 1500);
+                // Create random sick people or else healthy people
+                var randomNumber = getRandomNumber(0, 100);
+                if (randomNumber < 20) {
+                    $("#container").append('<div id="person' + i +
+                        '" class="person sick" style="position:absolute; top:' + topPosition + 'px; left:' +
+                        leftPosition + 'px" data-state="healthy">' + i + '</div>');
+                } else {
+                    $("#container").append('<div id="person' + i +
+                        '" class="person healthy" style="position:absolute; top:' + topPosition + 'px; left:' +
+                        leftPosition + 'px" data-state="healthy">' + i + '</div>');
+                }
+                var oElement = $("#person" + i);
+                movePerson(oElement);
+            }
+        };
+        createPeople();
+        /**************************************************/
+        function movePerson(oElement) {
+            $(oElement).stop(true);
+            // Animate the element to a new destination
+            var actualXPosition = $(oElement).offset().top;
+            var actualYPosition = $(oElement).offset().left;
+            var newXPosition = getRandomNumber(0, 800);
+            var newYPosition = getRandomNumber(0, 1500);
+            // Calculate speed at which the element should move
+            var distanceX = Math.abs(actualXPosition - newXPosition);
+            var distanceY = Math.abs(actualYPosition - newYPosition);
+            var finalDistance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+            var normalSpeed = getRandomNumber(50, 200);
+            var movingSpeed = finalDistance * normalSpeed;
+            $(oElement).animate({
+                top: newXPosition,
+                left: newYPosition
+            }, movingSpeed, function () {
+                movePerson(oElement);
+            });
+        };
+    </script>
+</body>
+
+</html>

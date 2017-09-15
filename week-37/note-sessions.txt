@@ -1,0 +1,20 @@
+Sessions:
+When login in the Sessions/server generates key that will sent to client.
+It allows client to browse pages. session will match client key to generated server key.
+- Without key server will destroy session
+- chrome browser application Cookies
+
+Session in domain based. one session_destroy will destroy all session for t.d cnn.com
+
+
+basic login solution:
+
+# Show and hide iPages with if else
+# make test.php to se status of session
+# index.php check if isser session.userLastname
+- check with if else yes no
+# if - show welcomePage
+# else show loginPage
+## Make $var that shows pages
+
+

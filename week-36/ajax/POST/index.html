@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>POST With AJAX</title>
+</head>
+<body>
+    <br>
+    <form id="formUser" >
+        <!-- <input type="text" name="inputUserName" placeholder="user name"><br>
+        <input type="text" name="inputUserLastName" placeholder="user last name"><br>
+        <input type="text" name="inputUserYear" placeholder="Year"><br> -->
+        <input type="file" name="file1"><br>
+        <input type="file" name="file2"><br>
+        <input type="file" name="file3"><br>
+        <hr>
+        <button type="button" id="btnSave">SAVE</button>
+    </form>
+
+<script>
+
+    btnSave.addEventListener('click', function () {
+        var ajax = new XMLHttpRequest();
+        ajax.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var sDataFromServer = this.responseText;
+                console.log('data sent: ', sDataFromServer);
+            }
+        }
+        ajax.open('POST', 'api-save-data.php', true);
+        // What am i posting
+        var jFormUser = new FormData(formUser);
+        ajax.send(jFormUser);
+        // console.log(sFormUser);
+    })
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+
+[{
+		"products": [{
+				"id": "a1b2",
+				"name": "A",
+				"sizes": [36, 37, 38, 40],
+				"price": 100
+			},
+			{
+				"id": "c4tg",
+				"name": "B",
+				"sizes": [42],
+				"price": 80
+			},
+			{
+				"id": "6yh7",
+				"name": "C",
+				"sizes": [40, 42],
+				"price": 90,
+				"onsale": "yes"
+			}
+		]
+	},
+	{
+		"products": [{
+				"id": "a1b2",
+				"name": "A",
+				"sizes": [36, 37, 38, 40],
+				"pris": 100
+			},
+			{
+				"id": "c4tg",
+				"name": "B",
+				"sizes": [42],
+				"pris": 80
+			},
+			{
+				"id": "6yh7",
+				"name": "C",
+				"sizes": [40, 42],
+				"pris": 90,
+				"onsale": "ja"
+			}
+		]
+	}
+]

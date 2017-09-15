@@ -1,0 +1,8 @@
+
+# include is optional. if the server dont find the file it will still run
+include
+include_once
+
+#require will brake and throw error if file not found
+require
+reguire_once

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+    // save text to the local storage
+    // localStorage.sLetter = sLetter;
+    // YOU CANNOT WRITE OBJECTS TO THE
+    // LOCAL STORAGE.EG: YOU CANNOT WRITE
+    // ARRAYS, OR JSON, ANY OTHER OBJECT
+    var aProducts = ["A","B","C","D"];
+    console.log(aProducts);
+    // use the object (array)
+    // convert the object to text (string)
+    var sProducts = JSON.stringify(aProducts);
+    console.log(sProducts);
+    // write the text that looks like an array
+    // to the local storage
+    localStorage.sProducts = sProducts ;
+
+
+
+    // Create an array with 3 users (name)
+    // save it to the localStorage
+    var aUserNames = ["A","B","C"];
+    console.log(aUserNames);
+    var sUserNames = JSON.stringify(aUserNames);
+    localStorage.sUserNames = sUserNames ;
+        // var sLetter = 'c';
+        // Save text to localstorage
+        // localStorage.sletter = sLetter;
+
+        // var aProduct = ['A', 'B', 'C', 'D'];
+        // var sProducts = JSON.stringify(aProduct);
+
+        // loacalStorage.sProducts = sProducts;
+
+        // var aFriends = ['MI', 'MO', 'SI'];
+        var aBoy = ['MI', 'MO', 'SI','MI', 'MO', 'SI'];
+
+        // var sFriends = JSON.stringify(aFriends);
+        // localStorage.sFriends = sFriends;
+
+        var sBoy = JSON.stringify(aBoy);
+        localStorage.sBoy = sBoy;
+
+        // localStorage.removeItem('sBoy');
+
+        // To clear all
+        // localStorage.clear(sBoy);
+
+
+    </script>
+
+</body>
+</html>

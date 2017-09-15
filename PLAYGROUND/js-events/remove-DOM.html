@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pickle</title>
+</head>
+<body>
+        <button>Add fries to lunch</button>
+        <button>Add cheese to sandwich</button>
+        <button>Remove pickles</button>
+
+        <h3>My Lunch</h3>
+        <ul id="lunch">
+            <li><h4>My sandwich</h4></li>
+            <li>Bread</li>
+            <li id="pickles">Pickles</li>
+            <li id="Beef">Beef</li>
+            <li>Mayo</li>
+            <li>Bread</li>
+        </ul>
+
+        <script>
+           
+            // Now we want to add cheese both before and after the beef in our burger.
+
+            var addCheese = function () {
+
+                var beef = document.querySelector("#Beef"),
+
+                        topSlice = document.createElement("li"),
+                        bottomSlice = document.createElement("li");
+
+                bottomSlice.innerHTML = topSlice.innerHTML = 'Cheese';
+
+                // Inserting the top slice:
+                // Take the parent of the beef (that's the sandwich) and use insertBefore on it.
+                // The first argument to insertBefore is the new element we're gonna add.
+                // The second argument is the node before which the new element is inserted.
+
+                beef.parentNode.insertBefore(topSlice, beef);
+
+                // The bottom slice:
+                // We have to use a little trick here!
+                // Supply the next nearest element as the second argument to insertBefore,
+                // that way we can actually insert after the element we want.
+
+                beef.parentNode.insertBefore(bottomSlice, beef.nextSibling);
+
+            };
+
+            var removePickles = function () {
+
+                // Finally, we want to get rid of those pickles. Again javascript got us covered!
+
+                var pickles = document.querySelector("#pickles");
+
+                if (pickles) {
+                    pickles.parentNode.removeChild(pickles);
+                }
+
+            };
+
+            // Delicious!
+
+            var btn = document.querySelectorAll("button");
+
+            btn[0].addEventListener('click', addFries);
+
+            btn[1].addEventListener('click', addCheese);
+
+            btn[2].addEventListener('click', removePickles);
+
+        </script>
+</body>
+</html>

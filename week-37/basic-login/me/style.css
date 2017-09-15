@@ -1,0 +1,113 @@
+/* @import url('pages.css'); */
+
+
+/*
+background: ; is the shorthand version of this:
+background-color:; background-image:; background-position:; background-repeat:;
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	font-size: 16px;
+}
+
+
+/**************************LOGIN FORM************************/
+
+.frmContainer {
+	width: 330px;
+	padding: 2em 1.50em;
+	margin: 0.5em;
+	background-color: lime;
+}
+
+input {
+	width: 100%;
+	height: 50px;
+	padding: 0px 15px;
+}
+
+.btn {
+	position: relative;
+	font-size: 1em;
+	width: 100%;
+	height: 50px;
+	border: none;
+	outline: none;
+	color: white;
+	background: grey;
+	transition-duration: 0.4s;
+	text-decoration: none;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.btn:after {
+	content: "";
+	display: block;
+	background: #B1AFAF;
+	position: absolute;
+	padding-top: 300%;
+	padding-left: 350%;
+	margin-left: -20px!important;
+	margin-top: -120%;
+	opacity: 0;
+	transition: all 0.8s
+}
+
+.btn:active:after {
+	padding: 0;
+	margin: 0;
+	opacity: 1;
+	transition: 0s
+}
+
+.cBtnLogout {
+	color: grey;
+	background: white;
+}
+
+.cMarginTop10 {
+	margin-top: 10px;
+}
+
+
+/**************************PAGE************************/
+
+#iPageLogin {
+	display: grid;
+	/* grid-template-columns: 1fr 1fr 1fr; */
+	justify-content: center;
+	align-items: center;
+	background-color: powderblue;
+}
+
+#iPageLogin #lblLoginError {
+	text-align: center;
+	color: white;
+	display: none;
+}
+
+#iPageWelcome {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background: grey;
+}
+
+.cPage {
+	display: flex;
+	width: 100vW;
+	height: 100vh;
+	overflow: hidden;
+	display: none;
+}

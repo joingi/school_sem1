@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #circle {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+    .otherColor {
+        background-color: rgba(130, 0, 255, 1);
+    }
+    .other-color {
+        background-color: red;
+    }
+
+</style>
+<body>
+
+    <div id="circle" class="otherColor colorOne">
+
+    </div>
+
+    <div class="other-color">
+
+    </div>
+
+    <script>
+        // Run one time
+        /*
+        setTimeout(function() {
+            console.log('Hi');
+
+            // millisec
+        }, 1000);
+         */
+
+        // Run always after 1sec
+        /*
+        setInterval(function() {
+            console.log("X");
+        }, 1000);
+        */
+
+        /*
+        // ShowData after 5sec
+        setTimeout(function() {
+            showData();
+        }, 5000);
+
+        function showData() {
+            console.log('ShowData');
+        }
+         */
+
+        /*
+                    // Never add logic inside console.log()
+         var iCounter = 1;
+         setInterval(function() {
+
+             console.log(iCounter);
+             iCounter++
+         }, 1000);
+        */
+
+        // function changeColor() {
+
+        // }
+
+        setTimeout(function() {
+            // var circle = document.querySelector('#circle');
+            // var otherColor = document.querySelector('other-color');
+
+            // circle.style.backgroundColor = 'red';
+            // circle.removeAttribute('id')
+            circle.classList.removeAttribute('colorOne');
+            circle.classList.add('otherColor');
+
+        }, 1000);
+
+    </script>
+</body>
+</html>

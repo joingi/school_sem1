@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- ADD PRODUCTS -->
+    <div id="addProducts">
+        <h2>ADD PRODUCTS</h2>
+        <input id="inputAddProducts" type="text" placeholder="ADD PRODUCTS"><br>
+
+        <button id="btnSaveProducts">SAVE PRODUCTS</button>
+
+    </div><br>
+
+    <hr>
+
+    <!-- SHOW PRODUCTS -->
+    <div id="boxProducts">
+        <h2>SHOW PRODUCTS</h2>
+        <!-- <div class="boxProductSingle"><p></p><strong></strong></div> -->
+        <br>
+        <!-- <button class="btnDeleteProduct">DELETE</button> -->
+    </div>
+
+    <br>
+    <hr>
+    <h1>BELLOW FROM STACK</h1>
+    <form>
+        <label for="item">Add an item: </label>
+        <input id="inputProductName" type="text" size="20"><br>
+        <input id="submitButton" type="button" value="Add!">
+    </form>
+
+    <div id="productsList"></div>
+    <p>Click an item to remove it from the list.</p>
+
+
+
+    <script>
+
+
+
+       var aProducts = [];
+       var iCounter = 1;
+
+    //    document.addEventListener('click', function (e) {
+    //        if (e.target.classList.contains('btnDeleteProduct')) {
+    //             // console.log('X');
+    //             var productId = e.target.getAttribute('data-productId');
+    //             // console.log(productId);
+    //             productId.parentNode.remove(productId);
+    //        }
+
+    //    })
+
+        // my example
+        var btnSaveProducts = document.querySelector('#btnSaveProducts');
+        btnSaveProducts.addEventListener('click', function () {
+            sProductName = inputAddProducts.value;
+            // boxProducts.document.querySelector('#boxProducts');
+            // console.log(inputAddProducts);
+
+            var jProducts = {};
+            jProducts.productId = iCounter++
+            jProducts.productsName = sProductName;
+            console.log(jProducts);
+            aProducts.push(jProducts);
+            // console.log(aProducts);
+
+            for (var i = 0; i < aProducts.length; i++) {
+                // console.log(aProducts[i]);
+
+                var asProductId = aProducts[i].productId;
+                var asProductName = aProducts[i].productsName;
+
+
+                // Create single product div to be inserted to the DOM
+                var divSingleProduct = '<div class="boxProductSingle"><p>'+asProductId+'</p><strong>'+asProductName+'</strong><br><button class="btnDeleteProduct" data-productID="' +asProductId+ '">DELETE</button></div>';
+                var asProductObj = asProductId + asProductName;
+                /*
+                document.addEventListener('click', function (e) {
+                    if (e.target.classList.contains('btnDeleteProduct')) {
+                        var sDataProductId = e.target.getAttribute('data-productId')
+                        // console.log(sDataProductId);
+                        var iDataProductId = Number(sDataProductId);
+                        // console.log(iDataProductId);+
+                        aProducts.splice(i, 1);
+                        console.log(aProducts);
+                    }
+
+                }) */
+            }
+
+            // Herdis
+
+            document.addEventListener("click", function(e){
+            if(e.target.classList.contains("btnDeleteProduct")){
+                var sProductId = e.target.getAttribute("data-productId");
+                var sItem = JSON.parse(localStorage.products);
+                var items = " ";
+                for(var i = 0; i < sItem.length; i++){
+                items = sItem[i].id;
+                if(items == sProductId){
+                    e.target.remove();
+                    aProducts.splice(i,1);
+                    console.log(aProducts);
+                }
+                }
+
+            }
+            });
+
+
+
+            boxProducts.insertAdjacentHTML('beforeend', divSingleProduct);
+
+        })
+
+        var removeProduct = function () {
+                // Finally, we want to get rid of those pickles. Again javascript got us covered!
+                var delProd = document.querySelector(".btnDeleteProduct");
+                if (delProd) {
+                    delProd.parentNode.removeChild(delProd);
+                }
+
+            };
+
+            var btn = document.querySelectorAll("button");
+            btn.addEventListener('click', removeProduct);
+
+        document.addEventListener('click', function (e) {
+                        if (e.target.classList.contains('btnDeleteProduct')) {
+                            var sDataProductId = e.target.getAttribute('data-productId')
+                            // console.log(sDataProductId);
+                            var iDataProductId = Number(sDataProductId);
+                            console.log(iDataProductId);
+                            var remove = document.querySelector('boxProductSingle');
+
+
+                        }
+
+                    })
+
+        /* document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('btnDeleteProduct')) {
+                // console.log("DELETING A PRODUCT");
+                // HOW DO I GET THE data-productId from it?
+                var sProductId = e.target.getAttribute('data-productId');
+                var asProductId = Number(sProductId)
+                console.log(asProductId);
+                // [1,"A",2,"B"....]
+                // var iPositionOfProductId = aProducts.indexOf(asProductId);
+                // console.log('TEST', iPositionOfProductId);
+                for(var i = 0; i < aProducts.length; i++) {
+                    var oProd = aProducts[i];
+
+                    if(aProducts.indexOf(oProd.asProductId) !== -1) {
+                        aProducts.splice(oProd, 2);
+                    }
+                    // aProducts.splice(iPositionOfProductId, 2);
+                }
+                // console.log(aProducts);
+            }
+        }) */
+
+
+
+
+        // var boxProductSingle = document.getElementsByClassName('boxProductSingle');
+        // boxProductSingle.onclick = function () {
+        //     this.parentNode.removeChild(this);
+        // }
+
+        // ----------- from stack
+        window.onload=function() {
+            var button = document.getElementById("submitButton");
+            button.onclick = addItem;
+        }
+
+function addItem() {
+        var inputProductName = document.getElementById("inputProductName");  //getting text input
+        var inputProductName = inputProductName.value;   //getting value of text input element
+        var productsList = document.getElementById("productsList");  //getting element <productsList> to add element to
+        // var thisDiv = document.createElement("div");  //creating li element to add
+        var div = document.createElement("div");
+        div.setAttribute('class', 'divRemove')
+        div.innerHTML = inputProductName;    //inserting text into newly created <li> element
+        div.onclick = function() {this.parentNode.removeChild(this);}
+    if (productsList.childElementCount == 0) {  //using if/else statement to add items to top of list
+        productsList.appendChild(div);       // will add if count of productsList children is 0 otherwise add before first item
+    }
+    else {
+        productsList.insertBefore(div, productsList.firstChild);
+    }
+}
+
+
+
+    </script>
+
+</body>
+
+</html>

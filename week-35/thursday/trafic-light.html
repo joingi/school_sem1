@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trafic Light</title>
+
+    <style>
+
+
+
+    #circle1{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;border: 1px solid black;
+            margin: 0 auto;
+        }
+
+    #circle2{
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;border: 1px solid black;
+        margin: 0 auto;
+    }
+
+    #circle3{
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;border: 1px solid black;
+        margin: 0 auto;
+    }
+
+
+    .colorOne{
+        background-color: red;
+    }
+    .colorTwo {
+        background-color: yellow;
+    }
+    .colorThree {
+        background-color: green;
+    }
+
+    .otherColor{
+        background-color: white;
+    }
+
+    .traficLight {
+        margin: 0 auto;
+        width: 250px;
+        background-color: black;
+    }
+
+
+    </style>
+
+</head>
+<body>
+
+    <!-- <div id="circle" class="colorTwo"></div> -->
+    <!-- <div id="circle" class="yellowCircle"></div>
+    <div id="circle" class="greenCircle"></div> -->
+
+    <!-- <div id="circle"></div>
+    <div id="circle"></div>
+    <div id="circle"></div> -->
+
+    <div class="traficLight">
+        <div id="circle1" class="otherColor colorOne"></div>
+        <div id="circle2" class="otherColor colorTwo"></div>
+        <div id="circle3" class="otherColor colorThree"></div>
+    </div>
+
+    <!-- <div id="circle"></div> -->
+
+
+    <script>
+
+        // setInterval(function() {
+
+            setTimeout( function(){
+                circle1.classList.remove("otherColor");
+                circle1.classList.add("colorOne");
+                console.log("x");
+            } , 1000 );
+
+            setTimeout( function(){
+                circle1.classList.remove("colorOne");
+                circle2.classList.remove("otherColor");
+                circle2.classList.add("colorTwo");
+
+            } , 2000 );
+
+            setTimeout( function(){
+                circle2.classList.remove("colorTwo");
+                circle3.classList.remove("otherColor");
+                circle3.classList.add("colorThree");
+
+            } , 3000 );
+
+            setTimeout( function(){
+                circle3.classList.remove("colorThree");
+                circle2.classList.remove("otherColor");
+                circle2.classList.add("colorTwo");
+
+            } , 4000 );
+
+            setTimeout( function(){
+                circle2.classList.remove("colorTwo");
+                circle1.classList.remove("otherColor");
+                circle1.classList.add("colorOne");
+
+            } , 5000 );
+
+    // }, 1000);
+
+
+
+/*
+    setTimeout(function() {
+            // var circle = document.querySelector('#circle');
+            // var otherColor = document.querySelector('other-color');
+
+            // circle.style.backgroundColor = 'red';
+            // circle.removeAttribute('id')
+            circle.classList.removeAttribute('colorOne');
+            circle.classList.add('otherColor');
+
+
+        }, 1000);
+ */
+    </script>
+
+</body>
+</html>

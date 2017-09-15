@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TRAFFIC LIGHT</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #F0F0F0;
+        }
+
+        #trafficLight {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100px;
+            padding: 15px 0px;
+            border: 1px solid black;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        #trafficLight2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100px;
+            padding: 15px 0px;
+            border: 1px solid black;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .circle {
+            width: 75px;
+            height: 75px;
+            border: 1px solid white;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px white;
+        }
+
+        .arrow {
+            font-size: 75px;
+            color: white;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .arrowGreen {
+            background-color: green;
+        }
+
+        .off {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="trafficLight">
+
+        <div id="red" class="circle red"></div>
+        <div id="yellow" class="circle yellow off"></div>
+        <div id="green" class="circle green off"></div>
+
+        <div id="arrowGreen" class="arrow green off">&rarr; </div>
+    </div>
+    <div id="trafficLight">
+
+        <div id="red2" class="circle red"></div>
+        <div id="yellow2" class="circle yellow off"></div>
+        <div id="green2" class="circle green off"></div>
+
+        <div id="arrowGreen2" class="arrow green off">&rarr; </div>
+    </div>
+
+    <div id="trafficLight">
+
+        <div id="red3" class="circle red"></div>
+        <div id="yellow3" class="circle yellow off"></div>
+        <div id="green3" class="circle green off"></div>
+
+        <div id="arrowGreen3" class="arrow green off">&rarr;</div>
+    </div>
+
+    <script>
+        /*
+        1. RED ON 10 SEC
+        2. YELLOW ON FOR 2 SEC - RED ON
+        3. RED OFF, YELLOW OFF, GREEN ON 10 SEC
+        4. GREEN OFF - YELLOW ON 5 SEC
+        5. YELLOW OFF - RED ON 10 SEC
+        6. BACK TO STEP 1
+
+        GREEN            RED
+                    YELLOW
+                    GREEN - RED YELLOW OFF
+                    YELLOW - GREEN OFF
+                    RED - YELLOW OFF
+        */
+
+        var iTicker = 0;
+        setInterval(function () {
+
+            iTicker++;
+            if (iTicker == 2) {
+                runStepOne();
+            }
+            if (iTicker == 4) {
+                runStepTwo();
+            }
+            if (iTicker == 6) {
+                runStepThree();
+            }
+            if (iTicker == 8) {
+                runStepFour();
+            }
+            if (iTicker == 10) {
+                runStepFive();
+                iTicker = 0;
+            }
+
+        }, 1000);
+
+
+        function runStepOne() {
+            // RED ON 10 SEC
+            red.classList.remove("off");
+            red2.classList.remove("off");
+
+            green3.classList.remove("off");
+        }
+
+        function runStepTwo() {
+            //  YELLOW ON FOR 2 SEC - RED ON
+            red.classList.remove("off"); // it means ON
+            red2.classList.remove("off"); // it means ON
+            yellow.classList.remove("off"); // it means ON
+            yellow2.classList.remove("off"); // it means ON
+        }
+
+        function runStepThree() {
+            // RED OFF, YELLOW OFF, GREEN ON 10 SEC
+            red.classList.add("off");
+            red2.classList.add("off");
+            yellow.classList.add("off");
+            yellow2.classList.add("off");
+            green.classList.remove("off");
+            green2.classList.remove("off");
+            arrowGreen.classList.remove("off");
+            arrowGreen2.classList.remove("off");
+        }
+
+        function runStepFour() {
+            // GREEN OFF - YELLOW ON 5 SEC
+            arrowGreen.classList.add("off");
+            arrowGreen2.classList.add("off");
+            green.classList.add("off");
+            green2.classList.add("off");
+            yellow.classList.remove("off");
+            yellow2.classList.remove("off");
+        }
+
+        function runStepFive() {
+            // YELLOW OFF - RED ON 10 SEC
+            yellow.classList.add("off");
+            yellow2.classList.add("off");
+            red.classList.remove("off");
+            red2.classList.remove("off");
+
+            green3.classList.remove("off");
+        }
+
+        function addArrow() {
+            // YELLOW OFF - RED ON 10 SEC
+            arrow.classList.add("off");
+            arrow2.classList.add("off");
+            red.classList.remove("off");
+            red2.classList.remove("off");
+        }
+    </script>
+</body>
+
+</html>

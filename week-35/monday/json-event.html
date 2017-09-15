@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="showUser">
+
+    </div>
+
+    <input class="inputName" type="text" placeholder="Name">
+    <input class="inputLastName" type="text" placeholder="Last name">
+
+    <button id="btnSaveInput">SAVE</button>
+    <button id="btnShowUsers">Show Users</button>
+
+
+    <script>
+        aUser = []
+
+        var inputName = document.querySelector('.inputName');
+        var inputLastName = document.querySelector('.inputLastName');
+        var showUsers = document.querySelector('.showUser')
+        var btnSaveInput = document.getElementById('btnSaveInput');
+        var btnShowUsers = document.getElementById('btnShowUsers');
+
+        btnSaveInput.addEventListener('click', function () {
+            // console.log('click');
+            var sUserName = inputName.value;
+            var sUserLastName = inputLastName.value;
+            // console.log(getName);
+            // console.log(getLastName);
+
+            var jUser = {}
+            jUser.name = sUserName;
+            jUser.lastName = sUserLastName;
+            aUser.push(jUser);
+            console.log(aUser);
+        });
+
+        btnShowUsers.addEventListener('click', function () {
+            var sDivUser = '';
+            for (var i = 0; i < aUser.length; i++) {
+                // console.log(aUser[i]);
+                var sUserName = aUser[i].name;
+                var sUserLastName = aUser[i].sUserLastName;
+
+                // var sShowUser = '<div>' + aUser[i].name + ' ' +  aUser[i].lastName + '</div>';
+                sDivUser += '<div> '+ sUserName + ' ' + aUserLastName +' </div>'
+
+                showUsers.insertAdjacentHTML('beforeend', aDivUser);
+            }
+        })
+
+
+    </script>
+</body>
+</html>

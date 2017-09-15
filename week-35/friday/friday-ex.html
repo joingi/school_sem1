@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+
+    body {
+        width: 100%;
+        height: 1200px;
+    }
+
+</style>
+<body>
+    <div id="addUsers">
+        <h2>Add Users</h2>
+        <input id="inputAddUsersName" type="text" placeholder="Name">
+        <input id="inputAddUsersLastName" type="text" placeholder="Name">
+        <select id="txtUserGender">
+            <option disabled selected >Select Gender</option>
+            <option class="txtMale" value="male">Male</option>
+            <option class="txtFemale" value="female">Female</option>
+        </select><br>
+
+        <button id="btnSaveUsers">Save User</button>
+    </div>
+    <hr>
+
+    
+
+    <div id="showUsers">
+        <h2>Show Users</h2>
+        <button id="btnViewUsers">Show Users</button>
+
+        <div id="usersBox">
+            <!-- <div class="gender"></div>
+            <div class="name"></div>
+            <div class="lastName"></div> -->
+        </div>
+    </div>
+    <hr>
+
+    <div id="addProducts">
+        <h2>Add Products</h2>
+        <input id="inputAddProductsName" type="text" placeholder="Product Name"><br>
+        <button id="btnSaveProducts">Save Products</button>
+    </div>
+    <hr>
+
+    <div id="showProducts">
+        <h2>View Products</h2>
+        <button id="btnViewProducts">View Products</button>
+
+        <div id="productsBox">
+            <!-- <div class="productBoxSingle"><div class="product_id"></div><div class="productName"></div></div> -->
+        </div>
+    </div><hr>
+
+
+    <script>
+        var aProducts = [];
+        var aUsers = [];
+        var iCounter = 0;
+
+        // User ID encryption
+        var aAllowedCharacters = "123456789ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz";
+
+        function getUniqueId() {
+        //   console.log(aAllowedCharacters);
+
+          var sUniqueId = "";
+          for (var i = 0; i < 64; i++) {
+            //   console.log(aAllowedCharacters[i]);
+
+              var iRandomNumber = Math.floor(Math.random() * aAllowedCharacters.length);
+
+              sUniqueId += aAllowedCharacters[iRandomNumber];
+              // console.log(sUniqueId);
+          }
+          return sUniqueId;
+
+        }
+        // console.log( getUniqueId());
+
+        // PRODUCTS SAVE
+        var btnSaveProducts = document.querySelector('#btnSaveProducts');
+        btnSaveProducts.addEventListener('click', function () {
+            sProductsName = inputAddProductsName.value;
+            console.log(sProductsName);
+
+            // var aProductId = iCounter ++;
+
+            jProducts = {};
+            jProducts.product_id = iCounter++;
+            jProducts.productName = sProductsName;
+
+            aProducts.push(jProducts);
+            console.log(aProducts);
+
+            var sProducts = JSON.stringify(aProducts);
+            console.log(sProducts);
+            localStorage.setItem('sProducts', sProducts);
+
+        });
+
+        // PRODUCTS VIEW
+        var btnViewProducts = document.querySelector('#btnViewProducts');
+        btnViewProducts.addEventListener('click', function () {
+            // Get from localst
+            var getProductsLocal = localStorage.getItem('sProducts');
+            console.log(getProductsLocal);
+            // parse into object
+            var aProducts = JSON.parse(getProductsLocal);
+            console.log(aProducts);
+
+            // Show each product in div.productsBoxSingle
+            var divSingleProduct = "";
+            for (var i = 0; i < aProducts.length; i++) {
+                // console.log(aProducts[i]);
+
+                var sProductName = aProducts[i].productName;
+                var sProductId = aProducts[i].product_id;
+                console.log(sProductId+ ' ' +sProductName);
+
+                divSingleProduct = '<div class="productBoxSingle"><div class="product_id">' +sProductId+ '</div><div class="productName">'+sProductName+'</div><button class="btnDeleteProduct" data-productID="' +sProductId+ '">DELETE</button></div>';
+                productsBox.insertAdjacentHTML('beforeend', divSingleProduct);
+            }
+
+        });
+
+        // PRODUCTS DELETE
+
+        document.addEventListener("click", function(e){
+            // console.log('X');
+            if(e.target.classList.contains("btnDeleteProduct")){
+                var sDataProductId = e.target.getAttribute("data-productID");
+                // var iDataProductId = Number(sDataProductId);
+                var sItem = JSON.parse(localStorage.sProducts);
+                // console.log(sItem);
+                var items = " ";
+                for(var i = 0; i < sItem.length; i++){
+                items = sItem[i].product_id;
+                    if(items == sDataProductId){
+                        console.log(items);
+                        e.target.parentNode.remove();
+                        aProducts.splice(items,1);
+                        console.log(aProducts);
+                        // var sProducts = JSON.stringify(aProducts);
+                        // console.log(sProducts);
+
+
+                    }
+
+                }
+                localStorage.setItem('sProducts', JSON.stringify(aProducts));
+
+            }
+
+        });
+
+        // USER SAVE
+        var btnSaveUsers = document.querySelector('#btnSaveUsers');
+        btnSaveUsers.addEventListener('click', function () {
+            var sUserName = inputAddUsersName.value;
+            var sUserLastName = inputAddUsersLastName.value;
+            var sUserGender = document.getElementById('txtUserGender'); //.selectedIndex;
+            // var sUserGenderValue = document.getElementsByTagName('option')[sUserGender].value;
+            var sUserGenderValue = sUserGender.options[sUserGender.selectedIndex].value;
+            console.log(sUserName + ' ' + sUserLastName + ' ' + sUserGenderValue);
+
+            // Make object of users
+            var jUsers = {};
+                jUsers.ID = getUniqueId();
+                jUsers.name = sUserName;
+                jUsers.lastname = sUserLastName;
+                jUsers.gender = sUserGenderValue;
+                console.log(jUsers);
+
+            // push users object to array
+            aUsers.push(jUsers);
+            console.log(aUsers);
+            var sUsers = JSON.stringify(aUsers);
+            console.log(sUsers);
+            localStorage.setItem('sUsers', sUsers);
+        });
+
+        // USER VIEW
+        var btnViewUsers = document.querySelector('#btnViewUsers');
+        btnViewUsers.addEventListener('click', function () {
+            // get users from localStorage
+            var getUsersLocal = localStorage.getItem('sUsers');
+            console.log(getUsersLocal);
+            // parse users
+            var aUsers = JSON.parse(getUsersLocal);
+            console.log(aUsers);
+
+            for (var i = 0; i < aUsers.length; i++) {
+                console.log(aUsers[i]);
+
+                var sUserId = aUsers[i].ID;
+                var sUserName = aUsers[i].name;
+                var sUserLastname = aUsers[i].lastname;
+                var sUserGender = aUsers[i].gender;
+
+                var divSingleUsers = '<div class="productBoxSingle"><div class="gender">'+sUserGender+'</div><div class="name">'+sUserName+'</div><div class="lastName">'+sUserLastname+'</div></div>';
+                console.log(divSingleUsers);
+                usersBox.insertAdjacentHTML('beforeend', divSingleUsers );
+            }
+            
+
+        });
+
+
+
+
+
+    </script>
+</body>
+</html>

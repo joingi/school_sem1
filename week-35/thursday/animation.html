@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>animate demo</title>
+    <style>
+        .person {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            border: 1px solid black;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+
+    <div id="people"></div>
+
+    <script>
+        // Using multiple unit types within one animation.
+
+        // 0 and 1
+        // 0 and 2
+        // 0 1000
+
+        // console.log(iRandomNumberHeight);
+
+
+
+        for (var i = 0; i <= 100; i++) {
+
+            var iW = Math.round(Math.random() * 1000);
+            var iH = Math.round(Math.random() * 500);
+            var sColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            var sDivPerson = '<div class="person" style="background-color: ' + sColor + '; top: ' + iH + 'px; left: ' +
+                iW + 'px"></div>';
+
+
+            people.insertAdjacentHTML("beforeend", sDivPerson);
+        }
+
+        function getColor() {
+            var sColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            return sColor;
+        }
+
+
+
+
+        /*
+        $( "#go" ).click(function() {
+        $( "#block" ).animate({
+        left: "+=500",
+        }, 1500 );
+        });
+        */
+    </script>
+
+</body>
+
+</html>

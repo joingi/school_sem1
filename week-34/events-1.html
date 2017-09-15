@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="productsDiv">
+        <div>BMX</div>
+    </div>
+    <button id="btnShowProducts"></button>
+</body>
+
+<script>
+
+    var aProducts = ['CAR', 'BIKE', 'BOAT'];
+
+    var btnShowProducts = document.querySelector('#btnShowProducts');
+    btnShowProducts.addEventListener('click', function () {
+        // console.log('X');
+
+        for (var i = 0; i < aProducts.length; i++) {
+            // console.log(aProducts[i]);
+            var sProducts = aProducts[i]
+            // console.log(sProducts);
+
+            var productsDiv = document.querySelector('#productsDiv');
+            // console.log('<div> ' + sProducts + ' </div>');
+            var sProductName = '<div> ' + sProducts + ' </div>';
+            // console.log(sProductName);
+
+            productsDiv.insertAdjacentHTML('beforeend', sProductName);
+        // productsCatalog.insertAdjacentHTML('beforeend', ' , ' + aLocal[i]);
+
+
+        }
+
+    })
+
+
+
+
+</script>
+</html>

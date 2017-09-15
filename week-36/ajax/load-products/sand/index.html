@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>showProducts</title>
+</head>
+
+<body>
+
+
+	<button id="btnGetLetter">GET LETTER</button>
+
+	<div id="boxProducts"></div>
+
+<script>
+	btnGetLetter.addEventListener("click", function () {
+		boxProducts.innerHTML = "Loading ...";
+
+		var ajax = new XMLHttpRequest(); // AJAX
+		ajax.open("GET", "api-get-letters.php", true);
+		ajax.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				//console.log(this.responseText);
+				var sajDataFromServer = this.responseText;
+				// console.log(sajDataFromServer);
+				var ajDataFromServer = JSON.parse(sajDataFromServer);
+				console.log(ajDataFromServer);
+				var sDivsProducts = "";
+				for (var i = 0; i < ajDataFromServer.length; i++) {
+					 var sLetter = ajDataFromServer[i].letter;
+					 var sColor = ajDataFromServer[i].color;
+					sDivsProducts += '<div style="color: ' + sColor + '">' + sLetter + '</div>';
+				}
+				boxProducts.innerHTML = sDivsProducts;
+			}
+		};
+		ajax.send();
+
+	});
+</script>
+
+
+
+</body>
+
+</html>

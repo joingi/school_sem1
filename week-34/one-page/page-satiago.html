@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WEBSHOP 1</title>
+	<style>
+
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+
+		body{
+			width: 100vw;
+			height: 100vh;
+			overflow: hidden;
+		}
+
+		#pageMainMenu{
+			position: absolute;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100vw;
+			height: 100vh;
+			background-color: purple;
+			color: white;
+			font-size: 50px;
+			z-index: 1;
+		}
+
+
+		#pageViewProducts{
+			position: absolute;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100vw;
+			height: 100vh;
+			background-color: black;
+			color: white;
+			font-size: 50px;
+		}
+
+
+		#pageAddProduct{
+			position: absolute;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100vw;
+			height: 100vh;
+			background-color: blue;
+			color: white;
+			font-size: 50px;
+		}
+
+	</style>
+</head>
+<body>
+	<button class="btnShowPage" data-showThisPage="pageMainMenu">MAIN MENU</button>
+
+	<button class="btnShowPage" data-showThisPage="pageViewProducts">VIEW PRODUCTS</button>
+	<button class="btnShowPage" data-showThisPage="pageAddProduct">
+		ADD PRODUCT
+	</button>
+
+	<div id="pageMainMenu" class="page">
+		MAIN MENU
+	</div>
+
+	<div id="pageViewProducts" class="page">VIEW PRODUCTS</div>
+
+
+	<div id="pageAddProduct" class="page">
+		ADD PRODUCT
+		<input id="txtProductName" type="text" placeholder="Product Name">
+		<button id="btnAddProduct">ADD PRODUCT</button>
+	</div>
+
+	<script>
+
+		// empty array for products
+		var aProducts = [];
+
+		// when the button add product is clicked
+		// var btnAddProduct = document.getElementId("btnAddProduct");
+		var btnAddProduct = document.querySelector("#btnAddProduct");
+		// console.log(btnAddProduct);
+		btnAddProduct.addEventListener("click",function(){
+			var txtProductName = document.querySelector("#txtProductName");
+			var sProductName = txtProductName.value;
+			console.log(sProductName);
+			aProducts.push(sProductName);
+			console.log(aProducts);
+		});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		var aBtnShowPages = document.getElementsByClassName("btnShowPage");
+		// this is an array
+		for(var i = 0; i < aBtnShowPages.length; i++)
+		{
+			// console.log("x");
+			aBtnShowPages[i].addEventListener("click",function(){
+				// console.log("x");
+				// Hide the pages
+				var aPages = document.getElementsByClassName( "page" );
+				for(var j = 0; j < aPages.length; j++)
+				{
+					// console.log("x");
+					aPages[j].style.display = "none";
+				}
+
+				var sDataAttibute = this.getAttribute("data-showThisPage");
+				// pageOne or pageTwo
+				console.log(sDataAttibute);
+				document.getElementById(sDataAttibute).style.display = "flex";
+			});
+		}
+
+
+		/*
+		var aPages = document.getElementsByClassName( "page" );
+		// console.log( aPages );
+		for(var i = 0; i < aPages.length; i++)
+		{
+			// console.log("x");
+			aPages[i].style.display = "none";
+		}
+
+		// Show pageOne
+		var btnShowPageOne = document.getElementById("testMe");
+		btnShowPageOne.addEventListener("click",function(){
+			console.log("clicked");
+			// how do I get the data-showThisPage from the bottom
+			console.log( this ); // is the button itself
+			var sDataAttibute = this.getAttribute("data-showThisPage");
+			console.log(sDataAttibute);
+		});
+		*/
+
+
+		/*
+		var btnShowPageOne = document.getElementById("btnShowPageOne");
+		// addEventListener
+		btnShowPageOne.addEventListener( "click" , function(){
+			console.log("button ONE has been clicked");
+			// select the page main menu
+			var pageMainMenu = document.getElementById("pageMainMenu");
+			pageMainMenu.style.display = "none";
+			var pageOne = document.getElementById("pageOne");
+			pageOne.classList.add("moveToFront");
+		} );
+		*/
+
+	</script>
+
+
+</body>
+</html>

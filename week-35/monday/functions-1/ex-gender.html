@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ADD JSON USER TO ARRAY</title>
+
+<style>
+
+#boxUsers {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: auto;
+
+}
+
+.showMale {
+    font-size: 30px;
+    width: calc(100 / 2);
+}
+.showFemale {
+    font-size: 30px;
+    width: calc(100 / 2);
+}
+
+
+</style>
+
+</head>
+<body>
+<div>
+    <input id="txtUserName" type="text" placeholder="name" value="jon" >
+    <input id="txtUserLastName" type="text" placeholder="last name" value="jonsson" >
+    <input id="txtUserTextColor" placeholder="text color" value="lime" >
+
+    <select id="txtUserGender">
+        <option class="txtMale" value="male">Male</option>
+        <option class="txtFemale" value="female">Female</option>
+    </select>
+
+    <button id="btnSaveUser">SAVE USER</button>
+</div>
+<div>
+    <div id="boxUsers"></div>
+    <!-- <div class="showMale"></div> -->
+    <!-- <div class="showFemale"></div> -->
+
+    <!-- Button show user -->
+    <button id="btnShowUsers">SHOW USERS</button>
+</div>
+
+
+<script>
+
+    var aUsers = [];
+
+    btnSaveUser.addEventListener("click",function(){
+        // console.log("X");
+        var sUserName = txtUserName.value;
+        var sUserLastName = txtUserLastName.value;
+        var sTextColor = txtUserTextColor.value;
+        var sUserGender = document.getElementById('txtUserGender').selectedIndex;
+        var sUserGenderValue = document.getElementsByTagName('option')[sUserGender].value;
+        console.log(sUserGenderValue);
+        // Gender TEST
+
+
+        var boxUsers = document.querySelector('#boxUsers');
+
+
+        // Add inputvalues to JSON
+        var jUser = {};
+        jUser.name = sUserName;
+        jUser.lastName = sUserLastName;
+        jUser.textColor = sTextColor;
+        jUser.genderValue = sUserGenderValue;
+        // jUser.textGender = sUserGender;
+        // jUser.textGenderFemale = sUserGenderFemale;
+        // jUser.textGenderMale = sUserGenderMale;
+        console.log(jUser);
+        // Push JSON jUser into aUsers array
+        aUsers.push( jUser );
+        console.log( aUsers );
+    });
+
+    // Show Users
+    btnShowUsers.addEventListener("click",function(){
+        var sDivFemaleUser = " ";
+        var sDivMaleUser = " ";
+
+        var sUserName = "";
+        var sUserLastName = "";
+        var sTextColor = "";
+        var sUserGender = "";
+
+        boxUsers.innerHTML = " ";
+
+        for(var i = 0 ; i < aUsers.length; i++){
+            // console.log("x");
+            sUserName = aUsers[i].name;
+            sUserLastName = aUsers[i].lastName;
+            sTextColor = aUsers[i].textColor;
+            sUserGender = aUsers[i].genderValue;
+            console.log(sUserGender);
+
+            if (sUserGender === "male") {
+                sDivMaleUser += '<div class="showFemale"><div style="color: '+ sTextColor + '">' + sUserName + ' ' + sUserLastName + ' ' + sUserGender +'</div></div>';
+            } else {
+                sDivFemaleUser += '<div class="showMale"><div style="color: '+ sTextColor + '">' + sUserName + ' ' + sUserLastName + ' ' + sUserGender +'</div></div>';
+            }
+
+
+
+
+        }
+        boxUsers.insertAdjacentHTML("beforeend",sDivFemaleUser);
+        boxUsers.insertAdjacentHTML("beforeend",sDivMaleUser);
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="final.css">
+</head>
+
+<body>
+    <!-- MENU -->
+    <button class="btnShowPage" data-showThisPage="pageMainMenu">MAIN MENU</button>
+    <!-- PRODUCTS -->
+	<button id="btnViewProducts" class="btnShowPage" data-showThisPage="pageViewProducts">VIEW PRODUCTS</button>
+    <button class="btnShowPage" data-showThisPage="pageAddProducts">ADD PRODUCT</button>
+
+    <!-- MAIN MENU -->
+    <div id="pageMainMenu" class="main-page">MAIN MENU</div>
+
+    <!-- VIEW PRODUCT -->
+    <div id="pageViewProducts" class="main-page">
+        <div class="page-title">
+                <h3>VIEW PRODUCTS</h3>
+        </div>
+        <!-- SINGLE PRODUCTS -->
+        <div id="productsCatalog">
+            <!--<div class="singleProduct"></div> -->
+        </div>
+    </div>
+
+    <!-- ADD PRODUCT -->
+    <div id="pageAddProducts" class="main-page">
+            ADD PRODUCT
+        <input id="inpAddProductName" type="text" placeholder="Product Name" >
+        <button id="btnAddProduct">Add Product</button>
+        <label for=""></label>
+    </div>
+
+    <!-- <div data-productId="1"></div> -->
+
+
+    <script>
+        // var idX = 0;
+        var aProducts = [];
+
+
+        // PAGES
+        var btnShowPages = document.querySelector('btnShowPages');
+
+        // PRODUCTS
+        var btnAddProduct = document.querySelector('#btnAddProduct');
+        var btnViewProduct = document.querySelector('#btnViewProduct');
+
+        // ADD PRODUCT
+        btnAddProduct.addEventListener('click', function () {
+
+            var inpAddProductName = document.querySelector('#inpAddProductName');
+
+            // Gamla
+
+            // Add to aProducts array
+            var sProductName = inpAddProductName.value;
+            console.log(sProductName);
+
+            aProducts.push(sProductName);
+            // Save to local storage
+            var sProducts = JSON.stringify(aProducts);
+            console.log(sProducts);
+            localStorage.sProducts = sProducts;
+            // Alternitive to above
+            // localStorage.setItem('sProducts', sProducts);
+
+        });
+
+        // VIEW PRODUCTS LIST
+        var btnViewProducts = document.querySelector('#btnViewProducts');
+        btnViewProducts.addEventListener('click', function () {
+
+            var aSingleProduct = "";
+            var productsCatalog = document.querySelector('#productsCatalog');
+            var getLocal = localStorage.getItem('sProducts');
+            var parseProducts = JSON.parse(getLocal);
+
+            for (var i = 0; i < parseProducts.length; i++) {
+                aSingleProduct = '<div class="singleProduct">' + parseProducts[i] +  '</div>' +
+                '<button data-productId="product-ID">DELETE PRODUCT</button>';
+
+                if (!parseProducts[i]) {
+                    productsCatalog.insertAdjacentHTML('beforeend', console.log('<div><h1>Sorry NO Products Avalible</h1></div>'));
+                } else {
+                    productsCatalog.insertAdjacentHTML('beforeend', aSingleProduct);
+                }
+
+            }
+            // REMOVE PRODUCT
+
+        })
+
+        // REMOVE PRODUCT
+
+
+        // localStorage.clear();
+    </script>
+    <script src="final.js"></script>
+</body>
+
+</html>

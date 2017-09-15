@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+        var aAllowCharacters = "123456789ABCDEFGHJKMNRSTUVQabcdefghjkmnprst";
+
+        function getUniqueId() {
+            var sUniqueId = "";
+            for (var i = 0; i < aAllowCharacters.length; i++) {
+                // console.log(aAllowCharacters[1]);
+                var iRandomNumber = Math.floor(Math.random() * (aAllowCharacters.length));
+                console.log(aAllowCharacters[iRandomNumber]);
+            }
+        }
+
+        getUniqueId();
+
+        var sUsers = [];
+
+        for (var i = 0; i < sUsers.length; i++) {
+
+
+        }
+
+        // SAND Soulution bellow
+
+        var aAllowedCharacters = "123456789ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz";
+
+        function getUniqueId(){
+          // 1ZML-1OIgB_PciyHLO5_EXkumwkwNK_bRwLxjIEBV84A
+          // a random string of 64 alphanumeric characters
+          // console.log( aAllowedCharacters[1] );
+
+          var sUniqueId = "";
+          for(var i = 0; i < 64; i++){
+            // console.log( aAllowedCharacters[i] );
+            var iRandomNumber = Math.floor( Math.random() * aAllowedCharacters.length );
+            // console.log( aAllowedCharacters[iRandomNumber] );
+            sUniqueId += aAllowedCharacters[iRandomNumber];
+          }
+
+          return sUniqueId;
+
+        }
+
+        console.log( getUniqueId() );
+
+
+        var aUsers = [];
+
+        for( var i = 0; i < 10; i++ ){
+          var jUser = {};
+          jUser.id = getUniqueId();
+          jUser.name = "A";
+          aUsers.push( jUser );
+        }
+
+
+
+
+        console.log( aUsers );
+        </script>
+</body>
+</html>

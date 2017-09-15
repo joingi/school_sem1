@@ -1,0 +1,104 @@
+<script>
+    // var name = 'Johann';
+    // var lastname = 'ingi';
+
+    // console.log(name);
+    // console.log(lastname);
+    // console.log(name + ' ' + lastname);
+
+    // var price = '10';
+    // var tax = '11';
+
+    // var newPrice = parseInt(price);
+    // var newTax = parseInt(tax)
+
+    // var newPrice = Number(price);
+    // var newTax = Number(tax)
+
+    // var total = newPrice + newTax;
+    // console.log(parseInt(total));
+
+
+    // var price = "10.95";
+
+    // var newPrice = Number(price);
+    // console.log(newPrice);
+
+    // var newPrice = parseInt(price);
+    // console.log(newPrice);
+
+    // var newPrice = parseFloat(price);
+    // console.log(newPrice);
+
+    // var price = "10.90";
+    // var newPrice = Number(price).toFixed(2);
+    // newPrice = Number(newPrice);
+    // console.log(newPrice);
+
+    // var correctEmail = 'a@a.com';
+    // var correctPhone = '12345'
+    // var correctPassword = 'SECRET'
+
+    // var userEmail = 'a@a.is';
+    // var userPhone = '12345';
+    // var userPassword = 'SECRET';
+
+    // if ((userEmail == correctEmail || userPhone == correctPhone) && userPassword == correctPassword ) {
+    //     console.log('YES');
+    // } else {
+    //     console.log('No');
+    // }
+
+    // var aData = ['A', 'B', 'NO', '?'];
+    // var sCorrectUserName = 'A';
+    // var sCorrectUserPassword = '1';
+
+    // var sUserName = 'A';
+    // var sPassword = 'B';
+
+    // if (sUserName == sCorrectUserName && sPassword == sCorrectUserPassword) {
+    //     aData[2] = 'Yes';
+
+    // } else {
+    //     aData[2] = '--';
+    // }
+
+    // console.log(aData);
+
+// Module that multiplies all the number in 2D array and returns the product
+function multiplyAll(arr) {
+   var product = 1;
+
+    // Iterates the outer array
+    for (var i=0;i<arr.length;i++) {
+        // 1st Iter: [1,2]
+        // 2nd Itr: [3,4]
+        // 3rd Itr: [5,6,7]
+        console.log('i: ' + i, arr[i]);
+        for (var j=0;j<arr[i].length;j++) {
+            // Outer loop 1st inner 1st : 1
+            // Outer loop 1st inner 2nd : 2
+            // Outer loop 2nd inner 1st : 3
+            // ...
+            console.log('j: ' + j, arr[i][j]);
+
+            // Save the multiplication result
+
+            // Prev multiplication result * current no;
+            // Outer loop 1st inner 1st : 1 * 1 = 1
+            // Outer loop 1st inner 2nd : 1 * 2 = 2
+            // Outer loop 2nd inner 1st : 2 * 3 = 6
+            // Outer loop 2nd inner 1st : 6 * 4 = 24
+            // ...
+            product *= arr[i][j];
+       }
+    }
+
+    // Only change code above this line
+    return product;
+}
+
+
+multiplyAll([[1,2],[3,4],[5,6,7]]);
+
+</script>

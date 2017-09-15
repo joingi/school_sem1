@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="addProduct" >
+        <p>ADD PRODUCT</p>
+        <input id="sProductName" type="text" placeholder="Product Name">
+        <button id="btnAddProduct">ADD PRODUCT</button>
+        <button id="btnSavedataLocal">SAVE TO LOCAL STORAGE</button>
+        <button id="btnDeletedataLocal">DELETE LOCAL STORAGE</button>
+    </div>
+
+    <script>
+
+        var aProducts = [];
+
+        var inputProduct = document.querySelector('#sProductName');
+        // var sProductName = inputProduct.value;
+        // var sProductsTest = JSON.stringify(aProducts);
+
+        var btnAddProduct = document.querySelector('#btnAddProduct');
+        var btnSavedataLocal = document.querySelector('#btnSavedataLocal')
+
+        btnAddProduct.addEventListener('click', function () {
+            var inputProduct = document.querySelector('#sProductName');
+            var sProductName = inputProduct.value;
+            // console.log(sProductName);
+            aProducts.push(sProductName);
+            // console.log(sProductName);
+
+        })
+
+        btnSavedataLocal.addEventListener('click', function () {
+            var sProductsTest = JSON.stringify(aProducts);
+
+            localStorage.sProductsTest = sProductsTest;
+            console.log(sProductsTest);
+        })
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ADD JSON USER TO ARRAY</title>
+</head>
+<body>
+<div>
+    <input id="txtUserName" type="text" placeholder="name">
+    <input id="txtUserLastName" type="text" placeholder="last name">
+    <input id="txtUserTextColor" placeholder="text color">
+    <button id="btnSaveUser">SAVE USER</button>
+</div>
+<div>
+    <div id="boxUsers"></div>
+    <button id="btnShowUsers">SHOW USERS</button>
+</div>
+<script>
+
+    var aUsers = [];
+
+    btnSaveUser.addEventListener("click",function(){
+        // console.log("X");
+        var sUserName = txtUserName.value;
+        var sUserLastName = txtUserLastName.value;
+        var sTextColor = txtUserTextColor.value;
+        // console.log(sUserName,sUserLastName);
+        var jUser = {};
+        jUser.name = sUserName;
+        jUser.lastName = sUserLastName;
+        jUser.textColor = sTextColor;
+        console.log(jUser);
+        aUsers.push( jUser );
+        console.log( aUsers );
+    });
+
+    btnShowUsers.addEventListener("click",function(){
+        var sDivUser = "";
+        for(var i = 0 ; i < aUsers.length; i++){
+            // console.log("x");
+            var sUserName = aUsers[i].name;
+            var sUserLastName = aUsers[i].lastName;
+            var sTextColor = aUsers[i].textColor;
+            // console.log(sUserName, sUserLastName);
+            sDivUser += '<div style="color: '+sTextColor+'">'+sUserName+' '+ sUserLastName +'</div>';
+            console.log(sDivUser);
+        }
+        boxUsers.insertAdjacentHTML("beforeend",sDivUser);
+    });
+
+
+</script>
+</body>
+</html>

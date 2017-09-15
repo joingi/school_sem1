@@ -1,0 +1,9 @@
+[
+	{"id":"59b106225aa5a",
+	"letter":"A",
+	"color":"purple","price":100},
+
+	{"id":"59b10638a50ff",
+	"letter":"B","color":"blue",
+	"price":50}
+]

@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#pageMainMenu {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: lime;
+    color: #fff;
+    font-size: 50px;
+    text-shadow: 2px 2px 14px white;
+    z-index: 1;
+}
+
+#pageViewProduct {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    color: #fff;
+    font-size: 50px;
+    text-shadow: 2px 2px 14px white;
+
+}
+
+#pageAddProduct {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: blue;
+    color: #fff;
+    font-size: 50px;
+    text-shadow: 2px 2px 14px white;
+
+
+}
+
+#pageThree {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: pink;
+    color: #fff;
+    font-size: 50px;
+    text-shadow: 2px 2px 14px white;
+
+
+}
+
+#pageFour {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: #bada55;
+    color: #fff;
+    font-size: 50px;
+    text-shadow: 2px 2px 14px white;
+
+
+}

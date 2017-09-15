@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Display Products</title>
+
+    <h3>Display Products</h3>
+
+    <div id="boxProducts"></div>
+</head>
+<body>
+
+
+    <script>
+
+        var apiProducts = 'api-get-products.php';
+
+        // OnLoad
+        function onLoad() {
+            console.log('ON LOAD');
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', apiProducts, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log('readyState: ' + xhr.readyState);
+                    getProducts(xhr.responseText);
+                }
+            }
+            xhr.send();
+        }
+
+
+        function getProducts(sajData) {
+            var ajData = JSON.parse(sajData);
+            // console.log(ajData);
+            var sDivProducts = " ";
+            for (var i = 0; i < ajData.length; i++) {
+                console.log(ajData[i]);
+                var sProductId = ajData[i].id;
+                var sProductTitle = ajData[i].product_title;
+                var sProductColor = ajData[i].color;
+
+                sDivProducts += '<div id="btnShowMore" data-productId="' +sProductId+ '"><h2>' +sProductTitle+ '</h2><span>Color: ' +sProductColor+ '</span></div>';
+            }
+            boxProducts.innerHTML = sDivProducts;
+        }
+
+
+    //     // Show min products
+    //     function outputLocation(jsData) {
+    //     var target = document.querySelector('#location');
+    //     // loaction is string
+    //     // parse to JSON
+    //     var jData = JSON.parse(jsData);
+    //     // address = json.
+    //     var apiAddress = jData.results[0].formatted_address;
+    //     console.log(apiAddress);
+    //     // target inner To output results
+    //     target.innerHTML = apiAddress;
+    //   }
+
+
+    //     boxProducts.addEventListener('onload', onload);
+
+
+    </script>
+</body>
+</html>

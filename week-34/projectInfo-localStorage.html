@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WEBSHOP 1</title>
+<style>
+</style>
+</head>
+<body>
+<div id="lblMessage"></div>
+<div id="boxProducts"></div>
+<script>
+
+    /* SELECTOR AND EVENTS */
+    var lblMessage = document.querySelector("#lblMessage");
+
+    if(localStorage.sProducts)
+    {
+        console.log("YES - Products in the localStorage");
+        // TRY TO USE THIS AS A GUIDELINE, IT IS ONLY A GUIDELINE
+        // YOU NEED TO THINK A LITTLE MORE ABOUT IT
+
+        // Show the products here
+        // Get the text (looks like an array) from the localStorage
+        // convert the text to an array (object) by JSON.parse(XXXX)
+        // loop through the array and add the divs with the product to the boxProducts
+
+        // Remember add a button next to the product, so you can delete it
+        // the button contains a data-productId attribute
+        // click on the newly created button, extract the data-productId from it
+        // IF YOU CREATE THE BUTTON WITH CODE, YOU WILL MOST LIKELY
+        // NOT BE ABLE TO CLICK ON IT... THIS IS THE PROBLEM WITH DYNAMIC
+        // BUILD ELEMENTS, SO YOU NEED TO RUN THE CODE TO REGISTER THE CLICK
+        // ON THE BUTTON AGAIN... VERY DIFFICULT TO KNOW IF I DIDN'T TELL YOU
+        // loop throug the array and find a match with the product ID
+        // remove the element in the array at that specific position and also
+        // remove the next element, since that will be the name of the product
+        // remove the DOM element containig that product
+    }
+    else
+    {
+        console.log("NO - Products NOT FOUND in the localStorage");
+        // Show a NO PRODUCTS message to the user
+        lblMessage.innerHTML = "NO PRODUCTS FOUND";
+
+    }
+
+
+
+
+
+
+
+</script>

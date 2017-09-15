@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Dashboard</title>
+
+    <br>
+</head>
+
+<form id="formUser" >
+    <input type="text" name="inputUserName" placeholder="user name"><br>
+    <input type="text" name="inputUserEmail" placeholder="email"><br>
+    <input type="file" name="fileUserImage"><br>
+    <hr>
+    <button type="button" id="btnSaveUsers">SAVE</button>
+</form>
+
+<div id="getUser">
+    <h2>Users</h2>
+    <button id="btnShowUsers">Show Users</button>
+
+    <div id="showUsers"></div>
+</div>
+<hr>
+
+<div class="singleUser">
+    <h2>User Details</h2>
+    <div id="showSingleUser">
+        <!-- Single user here -->
+    </div>
+</div>
+
+
+</div>
+<body>
+
+
+    <script>
+
+
+// Save New user
+btnSaveUsers.addEventListener('click', saveUser);
+function saveUser() {
+    var ajax = new XMLHttpRequest();
+    ajax.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var sSavedFromServer = this.responseText;
+            console.log("THE SERVER SEND THIS FOR SAVED USERS:" , sSavedFromServer);
+            getAllUsers();
+        }
+    }
+    ajax.open('POST', 'api-save-data.php', true);
+    // WHAT SHOULD BE SENT
+    var jFormUser = new FormData(formUser);
+    ajax.send(jFormUser);
+    // console.log(sFormUser);
+}
+
+// Get all users
+btnShowUsers.addEventListener('click', getAllUsers)
+var aUsers = [];
+function getAllUsers() {
+    var ajax = new XMLHttpRequest();
+    ajax.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        aUsers = JSON.parse(this.responseText);
+        console.log('Show Users: ', aUsers);
+        showAllUsers();
+
+    }
+}
+ajax.open('GET', 'api-get-users.php', true);
+ajax.send();
+}
+
+
+function showAllUsers() {
+    // Display users in html
+    var sDivUsers = " ";
+        for (var i = 0; i < aUsers.length; i++) {
+            var aUserId = aUsers[i].id;
+            var aUserName = aUsers[i].user_name;
+            // console.log(aUserName);
+            sDivUsers += '<div>'+aUserName+'<button id="btnUserDetails" data-userId="'+aUserId+'">Details</button></div>';
+
+        }
+        showUsers.innerHTML = sDivUsers;
+        singleUserDetail();
+}
+
+// Get single user from api
+var btnUserDetails;
+var aUser;
+function getSingleUser(e) {
+    var sUserId = e.target.getAttribute('data-userId');
+    var ajax = new XMLHttpRequest();
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            aUser = JSON.parse(this.responseText);
+            console.log(aUser);
+            // showSingleUser function here
+            showSingleUser();
+        }
+    }
+    ajax.open('GET', 'api-get-user.php?id='+sUserId);
+    ajax.send();
+}
+
+// Show single user in client
+function showSingleUser() {
+    var sDivSingleuser = '<div><img src="'+aUser+'">\
+                      <h2>'+aUser+'</h2>\
+                      <p>'+aUser.user_email+'</p></div>';
+
+    showSingleUser.innerHTML = sDivSingleuser;
+}
+
+// singleUser button
+function singleUserDetail() {
+    btnUserDetails = document.querySelectorAll('#btnUserDetails');
+    for (var i = 0; i < btnUserDetails.length; i++) {
+        btnUserDetails[i].addEventListener('click', getSingleUser);
+    }
+}
+
+
+    </script>
+</body>
+</html>

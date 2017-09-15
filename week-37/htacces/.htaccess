@@ -1,0 +1,5 @@
+RewriteEngine On
+# RewriteRule ^$ test.html
+RewriteRule ^contact-us$ contact-us.php
+
+# Rules to display page without the extension

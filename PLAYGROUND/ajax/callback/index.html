@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>POST WITH AJAX</title>
+</head>
+<body>
+
+		<button id="btnGetData">GET DATA</button>
+		<button id="btnKillAjax">KILL ALL AJAX REQUESTS</button>
+
+		<script>
+
+			btnKillAjax.addEventListener( "click" , function(){
+				for(var i = 0; i < aAjax.length; i++){
+					aAjax[i].abort();
+					console.log("NO MORE AJAX TAKING PLACE");
+				}
+			});
+
+
+			btnGetData.addEventListener("click", function () {
+					doAjax("api-one.php", function (sResponse) {
+						console.log("One got:" + sResponse)
+					});
+					doAjax("api-two.php", function (sResponse) {
+						console.log("Two got:" + sResponse)
+					});
+				});
+
+
+
+			var aAjax = [];
+
+			function doAjax( sUrl , callback ){
+			  var ajax = new XMLHttpRequest();
+			  aAjax.push(ajax);
+			  ajax.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+			     	var sDataFromServer = this.responseText;
+			     	callback( sDataFromServer );
+			     	// console.log("AJAX request are: " + aAjax.length);
+	     		}
+		    }
+			  ajax.open( "GET", sUrl , true );
+			  ajax.send();
+			}
+
+			function showUser(callback) {
+				callback();
+			}
+
+
+			showUser( function firstName(name) {
+				console.log('Johann');
+
+			});
+
+    </script>
+
+
+
+</body>
+</html>

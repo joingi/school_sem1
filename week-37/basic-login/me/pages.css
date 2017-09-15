@@ -1,0 +1,20 @@
+#iPageLogin {
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    justify-content: center;
+    align-items: center;
+    background-color: powderblue;
+}
+
+#iPageLogin #lblLoginError {
+    text-align: center;
+    color: white;
+    display: none;
+}
+
+.cPage {
+    display: flex;
+    width: 100vW;
+    height: 100vh;
+    overflow: hidden;
+    /* display: none; */
+}

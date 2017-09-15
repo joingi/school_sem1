@@ -1,0 +1,41 @@
+<html>
+    <body>
+
+    Select your favorite fruit:
+    <select id="mySelect">
+      <option value="apple">PERA</option>
+      <option value="orange">Orange</option>
+      <option value="pineapple">Pineapple</option>
+      <option value="banana">Banana</option>
+    </select>
+
+    <select id="txtUserGender">
+        <option value="apple">Apple</option>
+        <option value="orange">Orange</option>
+        <option value="pineapple">Pineapple</option>
+        <option value="banana">Banana</option>
+      </select>
+
+    <p>Click the button to return the value of the selected fruit.</p>
+
+    <button type="button" onclick="myFunction()">Try it</button>
+    <hr>
+    <button id="btnShowUsers">SHOW USERS</button>
+
+    <script>
+    function myFunction() {
+        var x = document.getElementById("mySelect").selectedIndex;
+        alert(document.getElementsByTagName("option")[x].value);
+    }
+
+
+    btnShowUsers.addEventListener('click', function () {
+
+    var sUserGender = document.getElementById('txtUserGender').selectedIndex;
+    var sUserGenderValue = document.getElementsByTagName('option')[sUserGender].value;
+    console.log(sUserGenderValue);
+    })
+    </script>
+
+    </body>
+    </html>
