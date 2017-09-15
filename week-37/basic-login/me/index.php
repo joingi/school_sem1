@@ -1,3 +1,16 @@
+<?php
+session_start();
+$sShowWelcome = "";
+$sShowLogin = "";
+if ( isset( $_SESSION['sUserLastName'])) {
+    echo "YES";
+    $sShowWelcome = "show";
+}
+else {
+    echo "NO USER";
+    $sShowLogin = "show";
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -12,7 +25,7 @@
 <body>
 
     <!-- *******************LOGIN******************** -->
-    <div id="iPageLogin" class="cPage">
+    <div id="iPageLogin" class="cPage <?php echo $sShowLogin; ?>">
 
         <div class="frmContainer">
             <form id="iFrmLogin">
@@ -25,11 +38,11 @@
     </div>
 
     <!-- *******************WELCOME******************** -->
-    <div id="iPageWelcome" class="cPage">
+    <div id="iPageWelcome" class="cPage <?php echo $sShowWelcome; ?>">
 
         <div class="cWelcome-box">
-            <h1>Welcome<span id="welcomeUserName"></span></h1>
-            <button class="btn cBtnLogout" id="iBtnLogout" type="button">Log Out</button>
+            <h1>Welcome <span id="iWelcomeUserName"></span></h1>
+            <button class="btn cBtnLogout" id="iBtnLogout" type="button" action="api-logout.php">Log Out</button>
         </div>
 
     </div>

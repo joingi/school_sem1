@@ -2,7 +2,7 @@
 	session_start();
 
 	// Fake the correct data - this will be in the database
-	$sCorrectUserName 		= "A";
+	$sCorrectUserName 		= "a";
 	$sCorrectUserPassword = "1";
 	$sCorrectLastName 		= "Donoso";
 
@@ -10,7 +10,7 @@
 	$sUserName 			= $_POST['txtUserName'];
 	$sUserPassword 	= $_POST['txtUserPassword'];
 
-	if( $sUserName == $sCorrectUserName && 
+	if( $sUserName == $sCorrectUserName &&
 			$sUserPassword == $sCorrectUserPassword )
 	{
 		$_SESSION['sUserLastName'] = $sCorrectLastName;

@@ -2,5 +2,8 @@
 session_start();
 session_destroy();
 
-echo "destroy";
+// header("Location: index.php");
+// exit;
+
+
 ?>

@@ -20,6 +20,13 @@ body {
 }
 
 
+/**************************GLOBAL************************/
+
+.cMarginTop10 {
+	margin-top: 10px;
+}
+
+
 /**************************LOGIN FORM************************/
 
 .frmContainer {
@@ -75,37 +82,35 @@ input {
 	background: white;
 }
 
-.cMarginTop10 {
-	margin-top: 10px;
+#iPageLogin #lblLoginError {
+	text-align: center;
+	color: red;
+	display: none;
 }
 
 
 /**************************PAGE************************/
 
 #iPageLogin {
-	display: grid;
 	/* grid-template-columns: 1fr 1fr 1fr; */
 	justify-content: center;
 	align-items: center;
 	background-color: powderblue;
 }
 
-#iPageLogin #lblLoginError {
-	text-align: center;
-	color: white;
-	display: none;
-}
-
 #iPageWelcome {
-	display: grid;
 	justify-content: center;
 	align-items: center;
 	color: white;
 	background: grey;
 }
 
+.cPage.show {
+	display: grid;
+}
+
 .cPage {
-	display: flex;
+	display: grid;
 	width: 100vW;
 	height: 100vh;
 	overflow: hidden;
