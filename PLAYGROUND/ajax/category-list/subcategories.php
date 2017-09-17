@@ -31,6 +31,7 @@ $categories = [
 ];
 
   $category_id = isset($_GET['category_id']) ? (int) $_GET['category_id'] : 0;
+  echo $category_id;
 
   foreach($categories as $category) {
     if($category['id'] == $category_id) {

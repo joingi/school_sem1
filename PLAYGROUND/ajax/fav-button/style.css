@@ -1,0 +1,49 @@
+#blog-posts {
+    width: 700px;
+}
+
+.blog-post {
+    border: 1px solid black;
+    margin: 10px 10px 20px 10px;
+    padding: 6px 10px;
+}
+
+button.favorite-button,
+button.unfavorite-button {
+    background: #0000FF;
+    color: white;
+    text-align: center;
+    width: 70px;
+}
+
+button.favorite-button:hover,
+button.unfavorite-button:hover {
+    background: #000099;
+}
+
+button.favorite-button {
+    display: inline;
+}
+
+.fav button.favorite-button {
+    display: none;
+}
+
+button.unfavorite-button {
+    display: none;
+}
+
+.fav button.unfavorite-button {
+    display: inline;
+}
+
+.fav-heart {
+    color: red;
+    font-size: 2em;
+    float: right;
+    display: none;
+}
+
+.fav .fav-heart {
+    display: block;
+}
