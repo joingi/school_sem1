@@ -10,20 +10,20 @@ move_uploaded_file( $_FILES['fileUserImage']['tmp_name'], $sSaveFileTo);
 // The origina way i did it
 
 // String template a new user
-$sjNewUser = '{
-  "id": "'.uniqid().'",
-  "name": "'.$_POST['txtUserName'].'",
-  "email": "'.$_POST['txtUserEmail'].'",
-  "image": "'.$sFolder.$sFileName.'"
-}';
-$jNewUser = json_decode($sjNewUser);
+// $sjNewUser = '{
+//   "id": "'.uniqid().'",
+//   "name": "'.$_POST['txtUserName'].'",
+//   "email": "'.$_POST['txtUserEmail'].'",
+//   "image": "'.$sFolder.$sFileName.'"
+// }';
+// $jNewUser = json_decode($sjNewUser);
 
 // Refactored version
-// $jNewUser = json_decode('{}');
-// $jNewUser->id = uniqid();
-// $jNewUser->name = $_POST['txtUserName'];
-// $jNewUser->email = $_POST['txtUserEmail'];
-// $jNewUser->image = $sFolder.$sFileName;
+$jNewUser = json_decode('{}');
+$jNewUser->id = uniqid();
+$jNewUser->name = $_POST['txtUserName'];
+$jNewUser->email = $_POST['txtUserEmail'];
+$jNewUser->image = $sFolder.$sFileName;
 
 
 // Load all the users and decode them to an array

@@ -1,0 +1,14 @@
+## Entity-Relationship Model
+Entitys to table - Slide 0302
+
+
+## No
+Normalization is used for mainly two purpose
+ - Eliminating reduntant(useless) data.
+ - Ensuring data dependencies make sense i.e data is logically stored.
+
+ 1st Normal Form
+ - no two Rows of data must contain repeating group of information i.e each set of column must have a unique value
+
+ 2nd Normal Form
+ - As per the Second Normal Form there must not be any partial dependency of any column on primary key.

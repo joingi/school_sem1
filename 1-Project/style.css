@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: auto;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+
+/* GRID */
+
+.header {
+    grid-area: header;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.container {
+    display: grid;
+    grid-gap: 10px;
+    /* grid-template-row: 200px 200px 200px; */
+    grid-template-areas: "header header header" "main main main" "footer footer footer";
+    background-color: #fff;
+    color: #444;
+}
+
+.column {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 50px;
+}
+
+.main {
+    grid-area: main;
+    position: relative;
+    height: 100vh;
+    padding: 0;
+}
+
+.header,
+.footer {
+    background-color: #999;
+}
+
+
+/* HEADER */
+
+.main-nav {
+    display: flex;
+}
+
+.main-nav li:first-child {
+    margin-right: auto;
+}
+
+.main-nav li {
+    display: block;
+    padding: 15px;
+    border-right: 1px solid #fff;
+    cursor: pointer;
+}
+
+.main-nav li:last-child,
+.main-nav li:first-child {
+    border-right: none;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.main-nav .logo {
+    padding: 10px;
+    background: #4584b1;
+    border-radius: 10px;
+    color: #fff;
+}
+
+
+/* PAGES */
+
+#frontPage {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: purple;
+    color: white;
+    font-size: 50px;
+    /* z-index: 1; */
+}
+
+#productsPage {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: gold;
+    color: white;
+    font-size: 50px;
+}
+
+#adminPage {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: #4592DB;
+    color: white;
+    font-size: 50px;
+}
+
+#addProductPage {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: #E66CF7;
+    color: white;
+    font-size: 50px;
+    z-index: 1;
+}

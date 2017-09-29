@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CRUD - DELETE</title>
+</head>
+
+<body>
+
+    <form id="frmUpdateUser">
+        <input type="text" name="txtId" placeholder="ID">
+        <input type="text" name="txtName" placeholder="Name">
+        <button id="btnUpdate" type="button">Update</button>
+    </form>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        $('#btnUpdate').click( function () {
+            // Pass data to server
+            // url, data, callback
+            $.post('api-update-user.php',
+             $('#frmUpdateUser').serialize(),
+                function (sData) {
+                    console.log(sData);
+
+                });
+        })
+    </script>
+</body>
+
+</html>

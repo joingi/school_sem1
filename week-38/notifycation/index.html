@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>week 38 - 1</title>
+</head>
+
+<body>
+
+    <!-- <div id="sound">
+        <button id="playSound " type="button">Play</button>
+    </div> -->
+
+    <button id="notify" onclick="notifyMe()">Notify me!</button>
+    <!-- <button id="notify">Notify me!</button> -->
+
+
+    <script>
+        // var oSound = new Audio('sound.mp3');
+        // // Play with click
+        // playSound.addEventListener('click', function () {
+        //     oSound.play();
+        // });
+
+
+
+        // NOTIFICATION
+
+        var url = Notification.badge
+
+        function notifyMe() {
+            // Let's check whether notification permissions have already been granted
+            if (Notification.permission === "granted") {
+                // If it's okay let's create a notification
+                displayNotification();
+            }
+
+            // Otherwise, we need to ask the user for permission
+            else if (Notification.permission !== 'denied') {
+                Notification.requestPermission(function (permission) {
+                    // If the user accepts, let's create a notification
+                    if (permission === "granted") {
+                        displayNotification();
+                    }
+                });
+            }
+            // Finally, if the user has denied notifications and you
+            // want to be respectful there is no need to bother them any more.
+        }
+
+
+
+
+        function displayNotification() {
+
+            var notification = new Notification("Hi there, how are you?", {
+                "icon": "icon.png",
+                "body": "The Body"
+            });
+        }
+    </script>
+</body>
+
+</html>

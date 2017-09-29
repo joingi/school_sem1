@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CRUD - SAVE</title>
+</head>
+
+<body>
+
+    <form id="frmUser">
+        <input type="text" name="txtName">
+        <button id="btnSave" type="button">SAVE</button>
+    </form>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        $('#btnSave').click( function () {
+            // Pass data to server
+            // url, data, callback
+            $.post('api-save-user.php',
+             $('#frmUser').serialize(),
+                function (sData) {
+                    console.log(sData);
+
+                });
+        })
+    </script>
+</body>
+
+</html>

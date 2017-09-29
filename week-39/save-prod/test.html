@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project Store 1</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+        <div class="container">
+
+                <!-- ADD PRODUCTS -->
+                <div id="addProductPage" class="page">
+                    <!-- ADD -->
+                    <div class="add-products-left">
+                        <div class="add-product">
+                            <h1>Register Product</h1>
+                            <form id="frmAddProduct">
+                                <label for="productName">Name</label>
+                                <input type="text" name="txtName" id="productName"><br>
+                                <!-- Upload Image -->
+                                <br>
+                                <input type="file" name="fileImage" id="productImage">
+                                <hr>
+                                <button type="button" id="btnSave">Save Product</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- SHOW -->
+                    <div class="add-products-right"></div>
+                </div>
+
+            <div class="column footer">
+                Footer
+            </div>
+
+        </div>
+        <!-- container -->
+
+        <script>
+
+            // Events
+            var btnSave = document.querySelector('#btnSave');
+            btnSave.addEventListener('click', function () {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var productsData = JSON.parse(this.responseText)
+                        console.log('From API: ', productsData);
+                    }
+                };
+                xhr.open('POST', 'test.php', true);
+                var jFrmAddProduct = new FormData(frmAddProduct);
+                xhr.send(jFrmAddProduct);
+                console.log(jFrmAddProduct);
+
+            });
+        </script>
+</body>
+
+</html>

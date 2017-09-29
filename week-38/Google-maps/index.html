@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: 18px;
+        }
+
+
+        input,
+        button {
+            width: 100%;
+            height: 50px;
+            margin-top: 10px;
+            padding-left: 10px;
+            font-size: 1rem;
+        }
+
+        button {
+            /* border: none; */
+            /* outline: none; */
+            color: white;
+            background: red;
+        }
+
+        input:focus {
+            border-color: red;
+        }
+
+        .marginTop10 {
+            margin-top: 10px;
+        }
+
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+
+        #main {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #info-box {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main">
+        <div id="map"></div>
+
+        <div id="info-box">
+            <h3>My Google Maps Demo</h3>
+
+            <form id="frmProperty">
+                <input id="txtPrice" type="text" name="inpPrice" placeholder="price"><br>
+                <input id="txtAddress" type="text" name="inpAddress" placeholder="address"><br>
+                <button id="btnSaveProperty" class="marginTop10" type="button">SAVE PROPERTY</button>
+                <br>
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Create a system that can register a property with the GeoLocation (lat/lng) of it. All data goes to a file -->
+    <script>
+        // on click, use this variable to set the lat lng
+        var jMarkerPos = {};
+
+
+        btnSaveProperty.addEventListener('click', function () {
+            var frmProperty = document.querySelector('#frmProperty');
+            var jFormProperty = new FormData(frmProperty);
+            jFormProperty.append('lat', jMarkerPos.lat);
+            jFormProperty.append('lng', jMarkerPos.lng);
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log('Property info: ', this.responseText);
+
+                }
+            };
+            xhr.open('POST', 'api-get-name.php', true);
+            xhr.send(jFormProperty);
+        });
+
+        // JSONP
+        function initMap() {
+
+            // Make variable for map start position
+            var jLygten = {
+                lat: 55.703935,
+                lng: 12.537669
+            };
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: jLygten
+            });
+
+            var marker = new google.maps.Marker({
+                map: map,
+            });
+
+            map.addListener('click', function (e) {
+                jMarkerPos.lng = e.latLng.lng();
+                jMarkerPos.lat = e.latLng.lat();
+                console.log(jMarkerPos);
+                marker.setPosition(jMarkerPos);
+                var provPos = jMarkerPos.lng + jMarkerPos.lat;
+            });
+
+        }
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlAYGcLXj0Zob6yoTnU0iDcH9_mDf5CYo&callback=initMap"></script>
+</body>
+
+</html>

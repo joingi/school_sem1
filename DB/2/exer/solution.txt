@@ -1,0 +1,113 @@
+EX1
+Add at least 4 items into the database
+INSERT INTO department (id, Name, Location) VALUES (3, 'A', 'B');
+INSERT INTO department VALUES (4, 'C', 'D');
+INSERT INTO department VALUES (5, 'E', 'F');
+INSERT INTO department VALUES (6, 'G', 'H');
+
+
+EX2
+Cities with more than 1 million citizens.
+SELECT * FROM country WHERE Population > 1000000;
+
+Countries with life expectancy less than 74 years
+SELECT * FROM city WHERE LifeExpectancy < 74;
+
+
+Cities with number of citizens between 2 and 3 million
+SELECT * FROM city WHERE population BETWEEN 1000000 AND 2000000 ;
+
+Countries which start with the letter R or later in the alphabet
+SELECT * FROM city WHERE Name >= 'R' AND Name <='Z' ORDER BY Name;
+
+Do question 3,  sorted by Population
+SELECT * FROM city WHERE population BETWEEN 1000000 AND 2000000  ORDER BY  Population DESC;
+
+
+EX3
+Make queries from the World database, which demonstrate your understanding of the following MySQL functions. You should make 2 different queries for each function:
+
+avg()
+SELECT AVG(Population) FROM country;
+SELECT AVG(SurfaceArea) FROM country;
+
+count()
+SELECT count(IndepYear) FROM country;
+SELECT count(GNPOld) FROM country;
+
+max()
+SELECT MAX(LifeExpectancy) FROM country;
+SELECT MAX(IndepYear) FROM country;
+
+sum()
+SELECT sum(Population) FROM country;
+SELECT sum(SurfaceArea) FROM country;
+
+Group By
+SELECT COUNT(Name), Name FROM Country GROUP BY Region;
+SELECT AVG(Population), Region FROM Country GROUP BY Region;
+
+
+EX4
+Query the World database, which demonstrate your understanding of the following MySQL functions. You should make one query for each statement:
+Update
+UPDATE city SET Name = 'Test' WHERE ID = 1;
+
+Replace
+REPLACE INTO city (ID, Name, CountryCode, District, Population) VALUES (1, 'TEST', 'AFG', 'Kabol', '1780000');
+
+Delete
+DELETE FROM city WHERE Name='TEST';
+
+EX5
+SELECT employee.name, department.name
+FROM employee
+INNER JOIN department ON employee.department_id = department.department_id;
+
+SELECT employee.name, department.name
+FROM employee
+LEFT JOIN department ON employee.department_id = department.department_id;
+
+SELECT employee.name, department.name
+FROM employee
+RIGHT JOIN department ON employee.department_id = department.department_id;
+
+
+EX6
+Who is the hardest working employee (ie. one that worked the most hours on a single assignment).
+SELECT employee.name, MAX(assignment.hours), assignment.employee_id, employee.employee_id
+FROM Assignment
+INNER JOIN Employee ON Assignment.employee_id  = Employee .employee_id;
+
+Use a LEFT JOIN to capture the list of employees that havenâ€™t started their assignment yet.
+SELECT employee.name, assignment.employee_id, employee.employee_id
+FROM Assignment
+LEFT JOIN Employee ON Assignment.employee_id  = Employee .employee_id
+WHERE Assignment.hours = 0;
+
+Rewrite the query using EXISTS to achieve the same result as in 2.
+SELECT name
+FROM employee
+WHERE EXISTS
+(SELECT hours FROM Assignment WHERE employee_id = employee.employee_id AND hours = 0);
+
+
+EX7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

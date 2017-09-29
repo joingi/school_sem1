@@ -37,7 +37,6 @@ file_put_contents('data.txt', $sNewUsers);
 
 // echo $sNewUsers;
 
-
 echo "New user sucessfully saved, .$sNewUsers."; // Reply to the client via AJAX
 
 

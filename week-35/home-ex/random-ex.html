@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
 
     <form action="">
         <label>Male
-        <input type="radio" name="gender" id="male" value="male"><br>
+        <input type="radio" name="gender" id="male" value="Karl"><br>
     </label>
     </form>
 
-<script>
-console.log(male);
+    <script>
+        male.addEventListener('click', function () {
+            var value = male.vale;
+            console.log(value);
 
-</script>
+        });
+    </script>
 
 </body>
+
 </html>

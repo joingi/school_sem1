@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="left-side">
 
@@ -47,18 +49,18 @@
 
 
   <script>
-
     // Initializes all users
     getAllUsers();
 
     // Add new user
     btnSaveUser.addEventListener("click", saveUser);
+
     function saveUser() {
       var request = new XMLHttpRequest();
-      request.onreadystatechange = function() {
+      request.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           var sDataFromServer = JSON.parse(this.responseText);
-          console.log("Response: ",sDataFromServer);
+          console.log("Response: ", sDataFromServer);
           getAllUsers();
         }
       };
@@ -70,9 +72,10 @@
     // Show all users
     btnShowAllUsers.addEventListener("click", getAllUsers);
     var users = [];
+
     function getAllUsers() {
       var request = new XMLHttpRequest();
-      request.onreadystatechange = function() {
+      request.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           users = JSON.parse(this.responseText);
           showUsers();
@@ -81,12 +84,16 @@
       request.open("GET", "api-get-users.php");
       request.send();
     }
+
+
     function showUsers() {
       var htmlUsers = "";
       for (var i = 0; i < users.length; i++) {
         var htmlUser = '<div class="user">\
-                          <p class="name">'+users[i].name+'</p>\
-                          <button id="btnGetUser" data-id="'+users[i].id+'">See details</button>\
+                          <p class="name">' + users[i].name +
+          '</p>\
+                          <button id="btnGetUser" data-id="' + users[i].id +
+          '">See details</button>\
                         </div>'
         htmlUsers += htmlUser;
       }
@@ -98,24 +105,27 @@
     // Show details about specific user
     var btnGetUser;
     var user;
+
     function getSingleUser(e) {
       var userId = e.target.getAttribute('data-id');
       // console.log("Show single user", e.target.getAttribute('data-id'));
       var request = new XMLHttpRequest();
-      request.onreadystatechange = function() {
+      request.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           user = JSON.parse(this.responseText);
           showSingleUser();
 
         }
       }
-      request.open("GET", "api-get-user.php?id="+userId);
+      request.open("GET", "api-get-user.php?id=" + userId);
       request.send();
     }
+
     function showSingleUser() {
-      var userHtml = '<img src="'+user.image+'">\
-                      <h2>'+user.name+'</h2>\
-                      <p>'+user.email+'</p>'
+      var userHtml = '<img src="' + user.image + '">\
+                      <h2>' + user.name +
+        '</h2>\
+                      <p>' + user.email + '</p>'
       insertUserDetailsHere.innerHTML = userHtml;
     }
 
@@ -128,17 +138,9 @@
         console.log('X');
       }
     }
-
-
-
-
-
-
-
-
-
   </script>
 
 
 </body>
+
 </html>

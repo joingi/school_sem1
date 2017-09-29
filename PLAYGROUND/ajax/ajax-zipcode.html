@@ -1,82 +1,102 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Ajax Zip Code</title>
-    <style>
-      #entry {
-        margin: 2em 1em;
-      }
-      #location {
-        margin: 1em;
-      }
-    </style>
-  </head>
-  <body>
 
-    <div id="entry">
-      Zip code: <input id="zip-code" type="text" name="zipcode" />
-      <button id="ajax-button" type="button">Submit</button>
-    </div>
+<head>
+  <meta charset="utf-8">
+  <title>Ajax Zip Code</title>
+  <style>
+    #entry {
+      margin: 2em 1em;
+    }
 
-    <div id="location">
-    </div>
+    #location {
+      margin: 1em;
+    }
+  </style>
+</head>
 
-    <script>
-        // Google asks for all API users to sign up for an API key
-        // For simple tests, still works without an API key
-        var api = 'http://maps.googleapis.com/maps/api/geocode/json';
+<body>
 
-        function findLocation() {
-          var zipCode = document.querySelector('#zip-code');
-          // zipcode.value
-          var zipUrl = api + '?address=' + zipCode.value;
-          console.log(zipUrl);
+  <div id="entry">
+    Zip code: <input id="zip-code" type="text" name="zipcode" />
+    <button id="ajax-button" type="button">Submit</button>
+  </div>
 
-          // ajax request
-          var xhr = new XMLHttpRequest();
-          xhr.open('GET', zipUrl, true);
-          xhr.onreadystatechange = function () {
-            // if not ready then loading..
-            if (xhr.readyState < 4) {
-              console.log(xhr.readyState);
-              showLoading();
-            }
-            // if ok show location
-            if (xhr.readyState == 4 && xhr.status == 200) {
-              outputLocation(xhr.responseText);
-            }
-          }
-          // send should be after readyState function
-          xhr.send();
+  <div id="location">
+  </div>
 
+  <script>
+    // Google asks for all API users to sign up for an API key
+    // For simple tests, still works without an API key
+    var api = 'http://maps.googleapis.com/maps/api/geocode/json';
+
+    function findLocation() {
+      var zipCode = document.querySelector('#zip-code');
+      // zipcode.value
+      var zipUrl = api + '?address=' + zipCode.value;
+      console.log(zipUrl);
+
+      // ajax request
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', zipUrl, true);
+      xhr.onreadystatechange = function () {
+        // if not ready then loading..
+        if (xhr.readyState < 4) {
+          console.log(xhr.readyState);
+          showLoading();
         }
-
-      /*
-      function showLoading() {
-        // get loaction
-        var target = document.querySelector('#location');
-        // innerHTML loading
-        target.innerHTML = 'Loading....';
+        // if ok show location
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          outputLocation(xhr.responseText);
+        }
       }
-       */
+      // send should be after readyState function
+      xhr.send();
 
-      // jsData is json look a like STRING
-      function outputLocation(jsData) {
-        var target = document.querySelector('#location');
-        // loaction is string
-        // parse to JSON
-        var jData = JSON.parse(jsData);
-        // address = json.
-        var apiAddress = jData.results[0].formatted_address;
-        console.log(apiAddress);
-        // target inner To output results
-        target.innerHTML = apiAddress;
+    }
+
+    /*
+    function showLoading() {
+      // get loaction
+      var target = document.querySelector('#location');
+      // innerHTML loading
+      target.innerHTML = 'Loading....';
+    }
+     */
+
+    // jsData is json look a like STRING
+    function outputLocation(jsData) {
+      var target = document.querySelector('#location');
+      // loaction is string
+      // parse to JSON
+      var jData = JSON.parse(jsData);
+      // address = json.
+      var apiAddress = jData.results[0].formatted_address;
+      console.log(apiAddress);
+      // target inner To output results
+      target.innerHTML = apiAddress;
+    }
+
+    var button = document.getElementById("ajax-button");
+    button.addEventListener("click", findLocation);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', zipUrl, true);
+    xhr.onreadystatechange = function () {
+      // if not ready then loading..
+      if (xhr.readyState < 4) {
+        console.log(xhr.readyState);
+        showLoading();
       }
+      // if ok show location
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        outputLocation(xhr.responseText);
+      }
+    }
+    // send should be after readyState function
+    xhr.send();
+  </script>
 
-      var button = document.getElementById ("ajax-button");
-      button.addEventListener("click", findLocation);
-    </script>
+</body>
 
-  </body>
 </html>

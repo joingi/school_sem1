@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title></title>
+     <style>
+        *{
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        body{
+          font-size: 18px;
+        }
+     </style>
+  </head>
+
+  <body>
+
+    <div id="container"></div>
+
+
+  
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+    <script>
+      /*
+      console.time( 'test' );
+      var sTest = '';
+      for( var i = 0; i < 20000000; i++ ){
+        sTest += '<div>A</div>'; 
+      }      
+      console.timeEnd( 'test' );
+      */
+      $.getJSON( 'api-get-users.php' , function( ajUsers ){
+          var sDivUsers = '';
+          for( var i = 0; i < ajUsers.length; i++ ){
+            sDivUsers += '<div>\
+                              <span>'+ajUsers[i].id+'</span>\
+                              <span>'+ajUsers[i].name+'</span>\
+                            </div>';
+          }
+          $('#container').append( sDivUsers );
+        });
+        
+
+
+
+
+    </script>   
+  
+  </body>
+</html>

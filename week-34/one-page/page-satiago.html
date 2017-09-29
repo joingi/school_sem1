@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>WEBSHOP 1</title>
 	<style>
-
-		*{
+		* {
 			margin: 0px;
 			padding: 0px;
 		}
 
-		body{
+		body {
 			width: 100vw;
 			height: 100vh;
 			overflow: hidden;
 		}
 
-		#pageMainMenu{
+		#pageMainMenu {
 			position: absolute;
 			display: flex;
 			justify-content: center;
@@ -29,7 +29,7 @@
 		}
 
 
-		#pageViewProducts{
+		#pageViewProducts {
 			position: absolute;
 			display: flex;
 			justify-content: center;
@@ -42,7 +42,7 @@
 		}
 
 
-		#pageAddProduct{
+		#pageAddProduct {
 			position: absolute;
 			display: flex;
 			justify-content: center;
@@ -53,9 +53,9 @@
 			color: white;
 			font-size: 50px;
 		}
-
 	</style>
 </head>
+
 <body>
 	<button class="btnShowPage" data-showThisPage="pageMainMenu">MAIN MENU</button>
 
@@ -78,7 +78,6 @@
 	</div>
 
 	<script>
-
 		// empty array for products
 		var aProducts = [];
 
@@ -86,7 +85,7 @@
 		// var btnAddProduct = document.getElementId("btnAddProduct");
 		var btnAddProduct = document.querySelector("#btnAddProduct");
 		// console.log(btnAddProduct);
-		btnAddProduct.addEventListener("click",function(){
+		btnAddProduct.addEventListener("click", function () {
 			var txtProductName = document.querySelector("#txtProductName");
 			var sProductName = txtProductName.value;
 			console.log(sProductName);
@@ -110,15 +109,13 @@
 
 		var aBtnShowPages = document.getElementsByClassName("btnShowPage");
 		// this is an array
-		for(var i = 0; i < aBtnShowPages.length; i++)
-		{
+		for (var i = 0; i < aBtnShowPages.length; i++) {
 			// console.log("x");
-			aBtnShowPages[i].addEventListener("click",function(){
+			aBtnShowPages[i].addEventListener("click", function () {
 				// console.log("x");
 				// Hide the pages
-				var aPages = document.getElementsByClassName( "page" );
-				for(var j = 0; j < aPages.length; j++)
-				{
+				var aPages = document.getElementsByClassName("page");
+				for (var j = 0; j < aPages.length; j++) {
 					// console.log("x");
 					aPages[j].style.display = "none";
 				}
@@ -164,9 +161,9 @@
 			pageOne.classList.add("moveToFront");
 		} );
 		*/
-
 	</script>
 
 
 </body>
+
 </html>

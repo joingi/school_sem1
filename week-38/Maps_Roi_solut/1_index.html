@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <div id="divForm">
+        <form id="locationForm">
+            <input type="text" id="priceField" placeholder="price" name="price">
+            <input type="text" id="addressField" placeholder="address" name="address">
+            <button type="button" id="btnSave">Save</button>
+        </form>
+    </div>
+    <script>
+        var lngLatPostion = {};
+
+        btnSave.addEventListener("click", function () {
+            aAjax({
+                "method": "POST",
+                "url": "api-save-data.php",
+                "form": locationForm
+            }, function (data) {
+                console.log(data);
+                initMap();
+            })
+        });
+
+        function loadPositions(callback) {
+            aAjax({
+                "method": "GET",
+                "url": "api-load-positions.php"
+            }, function (data) {
+                var jPositions = JSON.parse(data);
+                callback(jPositions);
+            })
+        }
+
+
+        function initMap() {
+            var copenhagen = {
+                lat: 55.6761,
+                lng: 12.5683
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: copenhagen
+            });
+
+            var marker = new google.maps.Marker({
+                map: map
+            });
+
+            loadPositions(function (positions) {
+                for (var i = 0; i < positions.length; i++) {
+                    var lng = parseFloat(positions[i].lng);
+                    var lat = parseFloat(positions[i].lat);
+                    var jPosition = {
+                        lat: lat,
+                        lng: lng
+                    };
+                    var sPrice = positions[i].price;
+                    var sAddress = positions[i].address;
+                    var html = "<div>" +
+                        "<h3>Price: " + sPrice + "</h3>" +
+                        "<h3>Address: " + sAddress + "</h3>" +
+                        "</div>"
+                    createMarker(jPosition, html);
+                }
+            });
+
+            function createMarker(position, text) {
+                var newmarker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    title: text
+                });
+
+                newmarker['infowindow'] = new google.maps.InfoWindow({
+                    content: text
+                });
+
+                google.maps.event.addListener(newmarker, 'click', function () {
+                    this['infowindow'].open(map, this);
+                });
+            }
+
+            map.addListener("click", function (event) {
+                var latitude = event.latLng.lat();
+                var longitude = event.latLng.lng();
+                lngLatPosition = {
+                    lat: latitude,
+                    lng: longitude
+                }
+                console.log(lngLatPosition);
+                marker.setPosition(lngLatPosition)
+            })
+        }
+
+
+        function aAjax(config, callback) {
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var sDataFromServer = this.responseText;
+                    callback(sDataFromServer);
+                }
+            };
+            switch (config.method) {
+                case "GET":
+                    ajax.open(config.method, config.url, true);
+                    ajax.send();
+                    break;
+                case "POST":
+                    ajax.open(config.method, config.url, true);
+                    var dataForm = new FormData(config.form);
+                    dataForm.append("lat", lngLatPosition.lat);
+                    dataForm.append("lng", lngLatPosition.lng);
+                    ajax.send(dataForm);
+                    break;
+            }
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlAYGcLXj0Zob6yoTnU0iDcH9_mDf5CYo&callback=initMap"></script>
+</body>
+
+</html>

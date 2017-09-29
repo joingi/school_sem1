@@ -32,7 +32,7 @@
       var subcatSelect = document.querySelector('#subcatSelect');
       // Get value of catSelect
       var cat_id = catSelect.options[catSelect.selectedIndex].value;
-
+      // Send GET request to subcategories.php
       var url = 'subcategories.php?category_id=' + cat_id;
 
       var xhr = new XMLHttpRequest();

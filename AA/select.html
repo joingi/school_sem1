@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CRUD - SELECT</title>
+</head>
+
+<body>
+
+    <div id="container">
+        <div>
+            <!-- <span>1</span>
+            <span>A</span> -->
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        // Get data form server
+        // $.get()
+        // $.getJSON()
+
+        $.getJSON( 'api-get-users.php' , function( ajUsers ){
+            var sDivUsers = '';
+            for( var i = 0; i < ajUsers.length; i++ ){
+              sDivUsers += '<div>\
+                                <span>'+ajUsers[i].id+'</span>\
+                                <span>'+ajUsers[i].name+'</span>\
+                              </div>';
+            }
+            $('#container').append( sDivUsers );
+          });
+    </script>
+</body>
+
+</html>
